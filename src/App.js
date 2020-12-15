@@ -42,7 +42,7 @@ export default function App() {
           gl.setClearColor(new THREE.Color('#020209'))
         }} onMouseMove={onMouseMove}>
         <fog attach="fog" args={['#070710', 100, 700]} />
-        <ambientLight intensity={0.25} />
+        <ambientLight intensity={0.1} />
         {/*<Stars />*/}
         {/*<Explosions />*/}
         {/*<Track />*/}
@@ -56,11 +56,11 @@ export default function App() {
           <Rocks />
           <SkyBox/>
           {/*<Planets />*/}
-          <Enemies />
+          {/*<Enemies />*/}
           <Rig>
             <Ship />
           </Rig>
-          <Eye scale={[.8, .8, .8]} position={[35, -5, -35]}/>
+          {/*<Eye scale={[.8, .8, .8]} position={[35, -5, -35]}/>*/}
         </Suspense>
         <Effects />
       </Canvas>

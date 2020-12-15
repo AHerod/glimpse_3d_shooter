@@ -44,7 +44,7 @@ export default function Bubble({count, mouse}) {
     <>
       <instancedMesh ref={mesh} args={[null, null, count]}>
         <boxBufferGeometry attach="geometry" args={[10, 10, 10]}/>
-        <meshPhongMaterial attach="material" specular='#64052C' color="#33FFBD"/>
+        <meshPhongMaterial attach="material" specular='#64052C' color="#621296"/>
       </instancedMesh>
     </>
   )
