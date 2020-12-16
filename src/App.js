@@ -44,7 +44,7 @@ export default function App() {
         <fog attach="fog" args={['#070710', 100, 700]} />
         <ambientLight intensity={0.1} />
         {/*<Stars />*/}
-        {/*<Explosions />*/}
+        <Explosions />
         {/*<Track />*/}
          <group className={'swarmScreen'} style={{width: '100%', height: '100%'}} onMouseMove={onMouseMove}>
             <Bubble mouse={mouse} count={300} />

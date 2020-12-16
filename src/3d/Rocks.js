@@ -24,7 +24,7 @@ const Rock = React.memo(({ gltf, data }) => {
         scale={[20, 20, 20]}>
         <mesh>
           <bufferGeometry attach="geometry" {...gltf.__$[7].geometry} />
-          <meshStandardMaterial attach="material" {...gltf.__$[7].material} color="red" roughness={1} metalness={1} />
+          <meshLambertMaterial attach="material" {...gltf.__$[7].material} color="#499E1E" emissive={'#499E1E'} emissiveIntensity={'.5'} />
         </mesh>
       </object3D>
     </group>

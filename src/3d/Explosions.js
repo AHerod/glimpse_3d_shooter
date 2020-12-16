@@ -24,7 +24,7 @@ export default function Explosions() {
 function Explosion({ position, scale }) {
   const group = useRef()
   const { dummy } = useStore(state => state.mutation)
-  const particles = useMemo(() => [make('white', 0.8), make('orange', 0.6)], [])
+  const particles = useMemo(() => [make('#205407', 1), make('#499E1E', 0.6)], [])
 
   useEffect(() => void playAudio(new Audio(audio.mp3.explosion), 0.5), [])
 
