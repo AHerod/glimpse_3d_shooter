@@ -18,17 +18,18 @@ export default function Hud() {
   const score = useMemo(() => (points >= 1000 ? (points / 1000).toFixed(1) + 'K' : points), [points])
   return (
     <>
+      <Shadow />
       <UpperLeft onClick={() => toggle()}>
         sound
         <br />
         {sound ? 'off' : 'on'}
       </UpperLeft>
       <UpperRight>
-        <h1>points</h1>
+        screen
       </UpperRight>
       <LowerLeft>
-        <h2 ref={seconds}>0.0</h2>
-        <h1>{score}</h1>
+        <h1 ref={seconds}>0.0</h1>
+        <h2>{score}</h2>
       </LowerLeft>
       <Global />
       <LowerRight>
@@ -46,17 +47,21 @@ const base = css`
   font-variant-numeric: slashed-zero tabular-nums;
   line-height: 1em;
   pointer-events: none;
-  color: #00d0b2;
+  color: #be47e1;
 `
 
 const UpperLeft = styled.div`
   ${base}
-  top: 40px;
-  left: 50px;
+  top: 0;
+  left: 0;
   font-size: 2em;
-  transform: skew(5deg, 10deg);
   pointer-events: all;
   cursor: pointer;
+  clip-path: polygon(0 0, 100% 0, 50% 50%, 0% 100%);
+  width: 230px;
+  height: 155px;
+   box-shadow: inset #ab54f5 -20px -20px 35px 10px;
+   padding: 20px;
   @media only screen and (max-width: 900px) {
     font-size: 1.5em;
   }
@@ -65,12 +70,16 @@ const UpperLeft = styled.div`
 const UpperRight = styled.div`
   ${base}
   text-align: right;
-  top: 40px;
-  right: 50px;
+  top: 0;
+  right: 0;
   font-size: 2em;
-  transform: skew(-5deg, -10deg);
   pointer-events: all;
   cursor: pointer;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 50%);
+  width: 230px;
+  height: 155px;
+  box-shadow: inset #ab54f5 20px -16px 35px 10px;
+   padding: 20px;
   & > a {
     color: indianred;
     text-decoration: none;
@@ -82,19 +91,38 @@ const UpperRight = styled.div`
 
 const LowerLeft = styled.div`
   ${base}
-  bottom: 5px;
-  left: 50px;
-  transform: skew(-5deg, -10deg);
-  width: 200px;
+     font-family: 'Teko',sans-serif;
+    position: absolute;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-variant-numeric: slashed-zero tabular-nums;
+    line-height: 1em;
+    pointer-events: none;
+    color: #be47e1;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    width: 345px;
+    box-shadow: inset #ab54f5 1px 1px 20px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90px;
+    clip-path: polygon(0 0, 100% 0, 75% 100%, 25% 100%);
+
   & > h1 {
     margin: 0;
-    font-size: 14em;
+    font-size: 3em;
     line-height: 1em;
+    width:50px;
+    margin: 0 10px;
   }
   & > h2 {
     margin: 0;
     font-size: 4em;
-    line-height: 1em;
+    line-height: 3em;
+    width:50px;
+    margin: 0 10px;
   }
   @media only screen and (max-width: 900px) {
     bottom: 30px;
@@ -111,7 +139,6 @@ const LowerRight = styled.div`
   ${base}
   bottom: 70px;
   right: 50px;
-  transform: skew(5deg, 10deg);
   height: 60px;
   width: 200px;
   background: black;
@@ -126,7 +153,15 @@ const LowerRight = styled.div`
     width: 150px;
   }
 `
-
+const Shadow = styled.div`
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    left: 0;
+    top: 0;
+    box-shadow: inset #060606 1px 1px 95px 5px;
+`
 const Global = createGlobalStyle`
   * {
     box-sizing: border-box;

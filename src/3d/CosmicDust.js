@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import useStore from '../store'
 
-export default function Particles() {
+export default function CosmicDust() {
   const instancedMesh = useRef()
   const { particles, dummy } = useStore(state => state.mutation)
 

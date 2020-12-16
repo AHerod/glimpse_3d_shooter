@@ -4,7 +4,7 @@ import { Canvas } from 'react-three-fiber'
 import Stars from './3d/Stars'
 import Planets from './3d/Planets'
 import Effects from './3d/Effects'
-import Particles from './3d/Particles'
+import CosmicDust from './3d/CosmicDust'
 import Enemies from './3d/Enemies'
 import Rocks from './3d/Rocks'
 import Explosions from './3d/Explosions'
@@ -49,7 +49,7 @@ export default function App() {
          <group className={'swarmScreen'} style={{width: '100%', height: '100%'}} onMouseMove={onMouseMove}>
             <Bubble mouse={mouse} count={300} />
           </group>
-        {/*<Particles />*/}
+        {/*<CosmicDust />*/}
         <Rings />
         <Suspense fallback={null}>
           <Eyes/>
