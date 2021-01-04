@@ -191,4 +191,9 @@ const Global = createGlobalStyle`
     color: black;
     background: white;
   }
+  
+  .screen {
+    width: 100vw;
+    height: 100vh;
+  }
 `
