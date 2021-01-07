@@ -23,7 +23,6 @@ const App = () => {
 
     <Router>
       <FullScreen handle={handle}>
-        <div className="screen">
         <Switch>
           <Route path="/garage">
             <Garage/>
@@ -35,7 +34,6 @@ const App = () => {
             <Start/>
           </Route>
         </Switch>
-        </div>
       </FullScreen>
     </Router>
   );
