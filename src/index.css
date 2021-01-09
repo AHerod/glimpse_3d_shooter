@@ -198,13 +198,12 @@ canvas {
 }
 
 .btn-next {
+    cursor: none;
     position: fixed;
     top: 60vh;
     left: 50%;
     transform: translateX(-50%);
     background-color: rgba(110, 92, 163, 0.35);
-    cursor: pointer;
-    transition: background-color 0.15s ease-in;
     will-change: transform;
     font-size: 4em;
     z-index: 1;
@@ -219,6 +218,7 @@ canvas {
     outline: none;
     box-shadow: inset 1px -1px 20px 10px #000;
     font-family: 'Abel', sans-serif;
+    transition: 2ms ease-in all;
 }
 
 .btn-next:after, .btn-next:before {
@@ -241,8 +241,8 @@ canvas {
     height: 125%;
     border: 5px dashed rgba(61, 11, 89, 0.65);
     box-shadow: 1px -1px 20px 0 #780a83b0;
-    left: -14%;
-    top: -14%;
+    left: -14.5%;
+    top: -14.5%;
     animation: rotating 15s infinite ease-in;
 }
 
@@ -250,6 +250,8 @@ canvas {
     background: rgba(61, 11, 89, 0.65);
     color: #ad14bc;
     box-shadow: inset 1px -1px 20px 10px #000;
+    transition: 2ms ease-in all;
+    font-size: 4.1em;
 }
 
 
