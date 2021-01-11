@@ -4,7 +4,7 @@ import { useLoader, useFrame } from 'react-three-fiber'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import useStore from '../store'
 import Eye from './Eye'
-import { useGLTF } from '@react-three/drei/useGLTF'
+import { useGLTFLoader } from '@react-three/drei/loaders/useGLTFLoader'
 import RingTarget from './RingTarget'
 import SquareTarget from './SquareTarget'
 import ShipOneGeometry from './ShipOneGeometry'
@@ -18,7 +18,7 @@ const crossMaterial = new THREE.MeshBasicMaterial({ color: hotpink, fog: false }
 const position = new THREE.Vector3()
 const direction = new THREE.Vector3()
 
-export default function Ship() {
+export default function Ship({ staticPosition, staticScale }) {
   const gltf = useLoader(GLTFLoader, '/ship.gltf')
   const mutation = useStore(state => state.mutation)
   const { clock, mouse, ray } = mutation
@@ -26,40 +26,40 @@ export default function Ship() {
   const main = useRef()
   const laserGroup = useRef()
   const laserLight = useRef()
-  const { nodes, materials } = useGLTF('/newship.gltf')
+  const { nodes, materials } = useGLTFLoader('/newship.gltf')
   const exhaust = useRef()
   const cross = useRef()
   const target = useRef()
 
-  useFrame(() => {
-    main.current.position.z = Math.sin(clock.getElapsedTime() * 40) * Math.PI * 0.1
-    main.current.rotation.z += (mouse.x / 500 - main.current.rotation.z) * 0.1
-    main.current.rotation.x += (-mouse.y / 1200 - main.current.rotation.x) * 0.1
-    main.current.rotation.y += (-mouse.x / 1200 - main.current.rotation.y) * 0.1
-    main.current.position.x += (mouse.x / 10 - main.current.position.x) * 0.1
-    main.current.position.y += (25 + -mouse.y / 10 - main.current.position.y) * 0.1
-    // exhaust.current.scale.x = 1 + Math.sin(clock.getElapsedTime() * 200)
-    // exhaust.current.scale.y = 1 + Math.sin(clock.getElapsedTime() * 200)
-    for (let i = 0; i < lasers.length; i++) {
-      const group = laserGroup.current.children[i]
-      group.position.z -= 20
-    }
-    laserLight.current.intensity += ((lasers.length && Date.now() - lasers[lasers.length - 1] < 100 ? 20 : 0) - laserLight.current.intensity) * 0.3
-
-    // Get ships orientation and save it to the stores ray
-    main.current.getWorldPosition(position)
-    main.current.getWorldDirection(direction)
-    ray.origin.copy(position)
-    ray.direction.copy(direction.negate())
-
-    // ...
-    // crossMaterial.color = mutation.hits ? lightgreen : hotpink
-    // cross.current.visible = !mutation.hits
-    // target.current.visible = !!mutation.hits
-  })
+  // useFrame(() => {
+  //   main.current.position.z = Math.sin(clock.getElapsedTime() * 40) * Math.PI * 0.1
+  //   main.current.rotation.z += (mouse.x / 500 - main.current.rotation.z) * 0.1
+  //   main.current.rotation.x += (-mouse.y / 1200 - main.current.rotation.x) * 0.1
+  //   main.current.rotation.y += (-mouse.x / 1200 - main.current.rotation.y) * 0.1
+  //   main.current.position.x += (mouse.x / 10 - main.current.position.x) * 0.1
+  //   main.current.position.y += (25 + -mouse.y / 10 - main.current.position.y) * 0.1
+  //   // exhaust.current.scale.x = 1 + Math.sin(clock.getElapsedTime() * 200)
+  //   // exhaust.current.scale.y = 1 + Math.sin(clock.getElapsedTime() * 200)
+  //   for (let i = 0; i < lasers.length; i++) {
+  //     const group = laserGroup.current.children[i]
+  //     group.position.z -= 20
+  //   }
+  //   laserLight.current.intensity += ((lasers.length && Date.now() - lasers[lasers.length - 1] < 100 ? 20 : 0) - laserLight.current.intensity) * 0.3
+  //
+  //   // Get ships orientation and save it to the stores ray
+  //   main.current.getWorldPosition(position)
+  //   main.current.getWorldDirection(direction)
+  //   ray.origin.copy(position)
+  //   ray.direction.copy(direction.negate())
+  //
+  //   // ...
+  //   // crossMaterial.color = mutation.hits ? lightgreen : hotpink
+  //   // cross.current.visible = !mutation.hits
+  //   // target.current.visible = !!mutation.hits
+  // })
 
   return (
-    <group ref={main}>
+    <group ref={main} position={staticPosition} scale={staticScale}>
       <group scale={[3.5, 3.5, 3.5]}>
 
         // target

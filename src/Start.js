@@ -5,7 +5,7 @@ import {Canvas, useFrame, useThree} from 'react-three-fiber'
 // Components & Effects
 // import Effects from './Effects'
 import Particles from './3d/Particles'
-import {Text, OrbitControls, Billboard} from "drei";
+import {Text, Billboard} from "drei";
 import { Link } from 'react-router-dom'
 
 function Cells({ count, mouse }) {

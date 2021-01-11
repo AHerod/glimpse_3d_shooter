@@ -5,14 +5,14 @@ license: CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
 source: https://sketchfab.com/3d-models/eye-blend-a8259f43d41e4204a7e9746dfd112c30
 */
 import React, { useRef } from 'react'
-import { useGLTF } from '@react-three/drei/useGLTF'
+import { useGLTFLoader } from '@react-three/drei/loaders/useGLTFLoader'
 import { useLoader } from 'react-three-fiber'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import useStore from '../store'
 
 export default function EyeModel(props) {
   const group = useRef()
-  const { nodes, materials } = useGLTF('/eye_model.gltf')
+  const { nodes, materials } = useGLTFLoader('/eye_model.gltf')
   return (
     <group ref={group} {...props}>
       <group rotation={[-Math.PI / 2, 0, Math.PI ]} scale={props.scale} >

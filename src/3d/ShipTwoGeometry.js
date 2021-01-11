@@ -1,11 +1,11 @@
 import * as THREE from 'three'
 import React from 'react'
-import { useGLTF } from '@react-three/drei/useGLTF'
+import { useGLTFLoader } from '@react-three/drei/loaders/useGLTFLoader'
 
 const geometry = new THREE.BoxBufferGeometry(1, 1, 40)
 
 export default function ShipTwoGeometry() {
-  const { nodes, materials } = useGLTF('/newship.gltf')
+  const { nodes, materials } = useGLTFLoader('/newship.gltf')
 
   return (
     <group rotation={[-Math.PI / 2, 0, 0]}>
