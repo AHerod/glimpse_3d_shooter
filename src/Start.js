@@ -1,12 +1,15 @@
 import * as THREE from 'three'
-import React, {Suspense, useState, useCallback, useEffect, useRef, useMemo} from 'react'
-import {Canvas, useFrame, useThree} from 'react-three-fiber'
+import React, { Suspense, useState, useCallback, useEffect, useRef, useMemo } from 'react'
+import { Canvas, useFrame, useThree } from 'react-three-fiber'
 
 // Components & Effects
 // import Effects from './Effects'
 import Particles from './3d/Particles'
-import {Text, Billboard} from "drei";
+import { Text, Billboard } from 'drei'
 import { Link } from 'react-router-dom'
+import CosmicDust from './3d/CosmicDust'
+import Stars from './3d/Stars'
+import Rings from './3d/Rings'
 
 function Cells({ count, mouse }) {
   const mesh = useRef()
@@ -73,16 +76,16 @@ function Cells({ count, mouse }) {
 }
 
 function Start() {
-  const [hiddenRedEye, setHiddenRedEye] = useState(true);
+  const [hiddenRedEye, setHiddenRedEye] = useState(true)
   const [hovered] = useState(false)
   const mouse = useRef([0, 0])
-  const onMouseMove = useCallback(({clientX: x, clientY: y}) => (mouse.current = [x - window.innerWidth / 2, y - window.innerHeight / 2]), [])
+  const onMouseMove = useCallback(({ clientX: x, clientY: y }) => (mouse.current = [x - window.innerWidth / 2, y - window.innerHeight / 2]), [])
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
 
   useEffect(() => {
     document.body.style.cursor = hovered
       ? 'pointer'
-      : "url('https://raw.githubusercontent.com/chenglou/react-motion/master/demos/demo8-draggable-list/cursor.png') 39 39, auto"
+      : 'url(\'https://raw.githubusercontent.com/chenglou/react-motion/master/demos/demo8-draggable-list/cursor.png\') 39 39, auto'
   }, [hovered])
 
 
@@ -91,35 +94,40 @@ function Start() {
       <Link to="/garage" class={'btn-next'}>Start</Link>
       <Canvas
         pixelRatio={Math.min(2, isMobile ? window.devicePixelRatio : 1)}
-        camera={{position: [0, 0, 12], fov: 80}}
-        onCreated={({gl}) => {
+        camera={{ position: [0, 0, 12], fov: 80 }}
+        onCreated={({ gl }) => {
           gl.setClearColor(new THREE.Color('#020207'))
         }} onMouseMove={onMouseMove}>
 
-        <fog attach="fog" args={['lightblue', 15, 150]}/>
-        <ambientLight intensity={0.3}/>
-        <pointLight position={[-10, 0, -20]} intensity={.1}/>
-        <pointLight position={[-20, -10, -40]} intensity={.1}/>
+        <fog attach="fog" args={['lightblue', 15, 150]} />
+        <ambientLight intensity={0.3} />
+        <pointLight position={[-10, 0, -20]} intensity={.1} />
+        <pointLight position={[-20, -10, -40]} intensity={.1} />
         <group>
-             <Text
-              color={'#5d0186'}
-              position={[0, 5, -5]}
-              fontSize={4}
-              onPointerOver={() => setHiddenRedEye(false)}
-              onPointerOut={() => setHiddenRedEye(true)}
-              depthOffset={10}
-              font = {'Nova Square'}
-            >
-               GLIMPSE
-            </Text>
+          <Text
+            color={'#5d0186'}
+            position={[0, 5, -5]}
+            fontSize={4}
+            onPointerOver={() => setHiddenRedEye(false)}
+            onPointerOut={() => setHiddenRedEye(true)}
+            depthOffset={10}
+            font={'Nova Square'}
+          >
+            GLIMPSE
+          </Text>
         </group>
-        <Cells mouse={mouse} count={1000} />
-        <Particles count={isMobile ? 5000 : 10000} mouse={mouse}/>
+        <mesh rotation={[-8, 2, -2]} position={[-40, -10, -10]}>
+          <Rings />
+        </mesh>
+         <mesh rotation={[2, -2, 2]} position={[100, 0, 0]}>
+          <Rings />
+        </mesh>
+        <Cells mouse={mouse} count={500} />
+        <Particles count={isMobile ? 1000 : 2000} mouse={mouse} />
       </Canvas>
     </>
   )
 }
 
 
-
-export default Start;
+export default Start
