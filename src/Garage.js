@@ -15,10 +15,10 @@ import { Icosahedron } from '@react-three/drei'
 function Garage() {
   const [hovered] = useState(false)
   const mouse = useRef([0, 0])
-  const onMouseMove = useCallback(({ clientX: x, clientY: y }) => (mouse.current = [x - window.innerWidth / 2, y - window.innerHeight / 2]), [])
+  const onMouseMove = useCallback(({ clientX: x, clientY: y }) => (mouse.current = [x - window.innerWidth / 3, y - window.innerHeight / 3]), [])
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
   const laserMaterial = new THREE.MeshStandardMaterial({ color: '#5d0186', emissive: '#5d0186', roughness: '1' })
-
+  const [hiddenShipTwo, setHiddenShipTwo] = useState(true)
   useEffect(() => {
     document.body.style.cursor = hovered
       ? 'pointer'
@@ -37,7 +37,7 @@ function Garage() {
           gl.setClearColor(new THREE.Color('#000'))
         }} onMouseMove={onMouseMove}>
         <fog attach="fog" args={['#070710', 100, 700]} />
-        <pointLight position={[0, 5, 10]} />
+        <pointLight position={[0, 5, 2]} />
 
         <group>
           <Text
@@ -50,13 +50,15 @@ function Garage() {
           </Text>
         </group>
         <Suspense fallback={null}>
-          <mesh onClick={e => console.log('click')} rotation={[0, -140, 0]} position={[-8, 0, 0]} scale={[0.6,0.6,0.6]}>
+          <mesh onClick={() => setHiddenShipTwo(true)} rotation={[0, -140, 0]} position={[-8, 0, 0]}
+                scale={hiddenShipTwo ? [0.8, 0.8, 0.8] : [0.6, 0.6, 0.6]}>
             <ShipOne />
           </mesh>
-          <mesh onClick={e => console.log('click')} rotation={[0, 140, 0]} position={[8, 0, 0]} scale={[0.6,0.6,0.6]}>
+          <mesh onClick={() => setHiddenShipTwo(false)} rotation={[0, 140, 0]} position={[8, 0, 0]}
+                scale={hiddenShipTwo ? [0.6, 0.6, 0.6] : [0.8, 0.8, 0.8]}>
             <ShipTwo />
           </mesh>
-          <mesh position={[-8, -4, 0]}>
+          <mesh position={hiddenShipTwo ? [-8, -4, 0] :  [8, -4, 0]} >
             <meshStandardMaterial attach="material" color="#5d0186" />
             <Icosahedron material={laserMaterial} />
           </mesh>
@@ -65,7 +67,7 @@ function Garage() {
           <planeBufferGeometry attach="geometry" args={[500, 500]} />
           <meshStandardMaterial attach="material" color="#5d0186" />
         </mesh>
-        <Particles count={isMobile ? 300 : 5000} mouse={mouse} color={'#5d0186'}/>
+        <Particles count={isMobile ? 300 : 5000} mouse={mouse} color={'#5d0186'} />
         <OrbitControls />
       </Canvas>
     </>
