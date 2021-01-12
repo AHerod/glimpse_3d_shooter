@@ -2,7 +2,6 @@ import * as THREE from 'three'
 import React from 'react'
 import { useGLTFLoader } from '@react-three/drei/loaders/useGLTFLoader'
 
-const geometry = new THREE.BoxBufferGeometry(1, 1, 40)
 
 export default function ShipTwoGeometry() {
   const { nodes, materials } = useGLTFLoader('/newship.gltf')
@@ -80,10 +79,12 @@ export default function ShipTwoGeometry() {
           <mesh material={materials['disrball.001']} geometry={nodes.mesh_22.geometry} />
         </group>
         <group position={[0, -0.28, -0.87]} scale={[1.61, 0.55, 1.61]}>
-          <mesh material={materials['Material.001']} geometry={nodes.mesh_23.geometry} />
+          <mesh material={materials['Material.001']} geometry={nodes.mesh_23.geometry}/>
         </group>
         <group position={[0, -0.18, -0.85]} rotation={[Math.PI / 2, 0, 0]} scale={[0.18, 1.57, 0.18]}>
-          <mesh material={materials['Material.003']} geometry={nodes.mesh_24.geometry} />
+          <mesh material={materials['Material.003']} geometry={nodes.mesh_24.geometry}>
+            <meshBasicMaterial attach="material" color="teal" />
+          </mesh>
         </group>
         <group position={[0, -0.46, 1.57]} scale={[1.61, 0.55, 1.61]}>
           <mesh material={materials['Material.007']} geometry={nodes.mesh_25.geometry} />

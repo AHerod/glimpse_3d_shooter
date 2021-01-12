@@ -1,6 +1,4 @@
-import * as THREE from 'three'
 import React from 'react'
-import { useGLTFLoader } from '@react-three/drei/loaders/useGLTFLoader'
 import { useLoader } from 'react-three-fiber'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 

@@ -31,6 +31,8 @@ export default function Ship({ staticPosition, staticScale }) {
   const cross = useRef()
   const target = useRef()
 
+  //TODO: don't use useFrame in garage
+
   // useFrame(() => {
   //   main.current.position.z = Math.sin(clock.getElapsedTime() * 40) * Math.PI * 0.1
   //   main.current.rotation.z += (mouse.x / 500 - main.current.rotation.z) * 0.1
@@ -85,15 +87,15 @@ export default function Ship({ staticPosition, staticScale }) {
 
       </group>
 
-      // fuel fire
-      <mesh ref={exhaust} scale={[.4, .4, 5]} position={[3.5, -1, 18]}>
-        <dodecahedronBufferGeometry attach="geometry" args={[1.5, 2]} />
-        <meshBasicMaterial attach="material" color="teal" />
-      </mesh>
-      <mesh ref={exhaust} scale={[.4, .4, 5]} position={[-3.5, -1, 18]}>
-        <dodecahedronBufferGeometry attach="geometry" args={[1.5, 2]} />
-        <meshBasicMaterial attach="material" color="teal" />
-      </mesh>
+      // fuel fire TODO: don't show in garage
+      {/*<mesh ref={exhaust} scale={[.4, .4, 5]} position={[3.5, -1, 18]}>*/}
+      {/*  <dodecahedronBufferGeometry attach="geometry" args={[1.5, 2]} />*/}
+      {/*  <meshBasicMaterial attach="material" color="teal" />*/}
+      {/*</mesh>*/}
+      {/*<mesh ref={exhaust} scale={[.4, .4, 5]} position={[-3.5, -1, 18]}>*/}
+      {/*  <dodecahedronBufferGeometry attach="geometry" args={[1.5, 2]} />*/}
+      {/*  <meshBasicMaterial attach="material" color="teal" />*/}
+      {/*</mesh>*/}
     </group>
   )
 }

@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import React, { useRef, useMemo } from 'react'
 import { useFrame, useThree } from 'react-three-fiber'
 
-export default function Particles({ count, mouse }) {
+export default function Particles({ count, mouse, color }) {
   const mesh = useRef()
   const light = useRef()
   const { size, viewport } = useThree()
@@ -56,7 +56,7 @@ export default function Particles({ count, mouse }) {
       <pointLight ref={light} distance={40} intensity={8} color="lightblue" />
       <instancedMesh ref={mesh} args={[null, null, count]}>
         <dodecahedronBufferGeometry attach="geometry" args={[0.2, 0]} />
-        <meshPhongMaterial attach="material" color="#050505" />
+        <meshPhongMaterial attach="material" color={color} />
       </instancedMesh>
     </>
   )
