@@ -6,26 +6,23 @@ import { Text, Billboard, OrbitControls, RoundedBox, Stars } from 'drei'
 // import Effects from './Effects'
 import Particles from './3d/Particles'
 import { Link } from 'react-router-dom'
-import ShipOne from './3d/ShipOneGeometry'
-import ShipTwo from './3d/ShipTwoGeometry'
-import SkyBox from './3d/SkyBox'
-import Rig from './3d/Rig'
+import RingTarget from './3d/RingTarget'
+import SquareTarget from './3d/SquareTarget'
 import { Icosahedron } from '@react-three/drei'
 
 function Garage() {
-  const [hovered] = useState(false)
   const mouse = useRef([0, 0])
   const onMouseMove = useCallback(({ clientX: x, clientY: y }) => (mouse.current = [x - window.innerWidth / 3, y - window.innerHeight / 3]), [])
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
   const laserMaterial = new THREE.MeshStandardMaterial({ color: '#5d0186', emissive: '#5d0186', roughness: '1' })
-  const [hiddenShipTwo, setHiddenShipTwo] = useState(true)
+  const [hiddenShipTwo, setHiddenTargetTwo] = useState(true)
 
 
   return (
     <>
-      <Link to="/target" className={'btn-next'}>NEXT</Link>
-      <Link to="/start" className={'btn-next btn-back'}>BACK</Link>
-      <Canvas
+      <Link to="/game" className={'btn-next'}>NEXT</Link>
+      <Link to="/garage" className={'btn-next btn-back'}>BACK</Link>
+        <Canvas
         pixelRatio={Math.min(2, isMobile ? window.devicePixelRatio : 1)}
         camera={{ position: [0, 0, 12], fov: 80 }}
         gl={{ antialias: false }}
@@ -38,33 +35,31 @@ function Garage() {
         <group>
           <Text
             color={'#5d0186'}
-            position={[0, 7, -5]}
+            position={[0, 8, -5]}
             fontSize={4}
             depthOffset={10}
           >
-            SELECT YOUR SHIP
+            SELECT TARGET TYPE
           </Text>
         </group>
         <Suspense fallback={null}>
-          <mesh onClick={() => setHiddenShipTwo(true)} onPointerOver={() => setHiddenShipTwo(true)} rotation={[0, -140, 0]} position={[-8, 0, 0]}
-                scale={hiddenShipTwo ? [0.8, 0.8, 0.8] : [0.6, 0.6, 0.6]}>
-            <ShipOne />
+          <mesh onClick={() => setHiddenTargetTwo(true)} onPointerOver={(event) => setHiddenTargetTwo(true)}  position={[-80, 0, 200]}>
+            <RingTarget />
           </mesh>
-          <mesh onClick={() => setHiddenShipTwo(false)} onPointerOver={() => setHiddenShipTwo(false)} rotation={[0, 140, 0]} position={[8, 0, 0]}
-                scale={hiddenShipTwo ? [0.6, 0.6, 0.6] : [0.8, 0.8, 0.8]}>
-            <ShipTwo />
+          <mesh onClick={() => setHiddenTargetTwo(false)} onPointerOver={(event) => setHiddenTargetTwo(false)} position={[80, 0, 200]}>
+            <SquareTarget />
           </mesh>
-          <mesh position={hiddenShipTwo ? [-8, -4, 0] :  [8, -4, 0]} >
+          <mesh position={hiddenShipTwo ? [-16, -10, -10] :  [16, -10, -10]}  scale={[2,2,2]}>
             <meshStandardMaterial attach="material" color="#5d0186" />
             <Icosahedron material={laserMaterial} />
           </mesh>
         </Suspense>
-        <mesh receiveShadow rotation={[5, 0, 0]} position={[0, -12, 0]}>
-          <planeBufferGeometry attach="geometry" args={[500, 500]} />
-          <meshStandardMaterial attach="material" color="#5d0186" />
-        </mesh>
+        {/*<mesh receiveShadow rotation={[5, 0, 0]} position={[0, -70, 0]}>*/}
+        {/*  <planeBufferGeometry attach="geometry" args={[10000, 10000]} />*/}
+        {/*  <meshStandardMaterial attach="material" color="#5d0186" />*/}
+        {/*</mesh>*/}
         <Particles count={isMobile ? 300 : 5000} mouse={mouse} color={'#5d0186'} />
-        <OrbitControls />
+        <OrbitControls enableZoom={false} />
       </Canvas>
     </>
   )

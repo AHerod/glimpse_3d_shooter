@@ -105,6 +105,7 @@ html, body, #root {
     user-select: none;
     overflow: hidden;
     overscroll-behavior: none;
+    cursor: url('https://raw.githubusercontent.com/chenglou/react-motion/master/demos/demo8-draggable-list/cursor.png') 39 39, auto;
 }
 
 button {
@@ -189,12 +190,12 @@ canvas {
 }
 
 @keyframes rotating {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .btn-next {
@@ -262,4 +263,17 @@ canvas {
 .btn-next:active {
     transform: scale(0.95);
     transition: transform 0.1s ease-out;
+}
+
+.btn-back {
+    width: 2.5em;
+    height: 2.5em;
+    font-size: 2em;
+    line-height: 2.5em;
+    top: 85vh;
+    left: 5vw;
+}
+
+.btn-back:hover {
+    font-size: 2.1em;
 }

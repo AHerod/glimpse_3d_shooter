@@ -5,6 +5,7 @@ import React from "react";
 import Garage from "./Garage";
 import Game from "./Game";
 import Start from "./Start";
+import Target from "./Target";
 
 
 // FS
@@ -26,6 +27,9 @@ const App = () => {
         <Switch>
           <Route path="/garage">
             <Garage/>
+          </Route>
+           <Route path="/target">
+            <Target/>
           </Route>
           <Route path="/game">
             <Game/>

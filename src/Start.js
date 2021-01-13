@@ -77,17 +77,9 @@ function Cells({ count, mouse }) {
 
 function Start() {
   const [hiddenRedEye, setHiddenRedEye] = useState(true)
-  const [hovered] = useState(false)
   const mouse = useRef([0, 0])
   const onMouseMove = useCallback(({ clientX: x, clientY: y }) => (mouse.current = [x - window.innerWidth / 2, y - window.innerHeight / 2]), [])
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
-
-  useEffect(() => {
-    document.body.style.cursor = hovered
-      ? 'pointer'
-      : 'url(\'https://raw.githubusercontent.com/chenglou/react-motion/master/demos/demo8-draggable-list/cursor.png\') 39 39, auto'
-  }, [hovered])
-
 
   return (
     <>
