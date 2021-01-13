@@ -33,33 +33,33 @@ export default function Ship({ staticPosition, staticScale }) {
 
   //TODO: don't use useFrame in garage
 
-  // useFrame(() => {
-  //   main.current.position.z = Math.sin(clock.getElapsedTime() * 40) * Math.PI * 0.1
-  //   main.current.rotation.z += (mouse.x / 500 - main.current.rotation.z) * 0.1
-  //   main.current.rotation.x += (-mouse.y / 1200 - main.current.rotation.x) * 0.1
-  //   main.current.rotation.y += (-mouse.x / 1200 - main.current.rotation.y) * 0.1
-  //   main.current.position.x += (mouse.x / 10 - main.current.position.x) * 0.1
-  //   main.current.position.y += (25 + -mouse.y / 10 - main.current.position.y) * 0.1
-  //   // exhaust.current.scale.x = 1 + Math.sin(clock.getElapsedTime() * 200)
-  //   // exhaust.current.scale.y = 1 + Math.sin(clock.getElapsedTime() * 200)
-  //   for (let i = 0; i < lasers.length; i++) {
-  //     const group = laserGroup.current.children[i]
-  //     group.position.z -= 20
-  //   }
-  //   laserLight.current.intensity += ((lasers.length && Date.now() - lasers[lasers.length - 1] < 100 ? 20 : 0) - laserLight.current.intensity) * 0.3
-  //
-  //   // Get ships orientation and save it to the stores ray
-  //   main.current.getWorldPosition(position)
-  //   main.current.getWorldDirection(direction)
-  //   ray.origin.copy(position)
-  //   ray.direction.copy(direction.negate())
-  //
-  //   // ...
-  //   // crossMaterial.color = mutation.hits ? lightgreen : hotpink
-  //   // cross.current.visible = !mutation.hits
-  //   // target.current.visible = !!mutation.hits
-  // })
+  useFrame(() => {
+    main.current.position.z = Math.sin(clock.getElapsedTime() * 40) * Math.PI * 0.1
+    main.current.rotation.z += (mouse.x / 500 - main.current.rotation.z) * 0.1
+    main.current.rotation.x += (-mouse.y / 1200 - main.current.rotation.x) * 0.1
+    main.current.rotation.y += (-mouse.x / 1200 - main.current.rotation.y) * 0.1
+    main.current.position.x += (mouse.x / 10 - main.current.position.x) * 0.1
+    main.current.position.y += (25 + -mouse.y / 10 - main.current.position.y) * 0.1
+    // exhaust.current.scale.x = 1 + Math.sin(clock.getElapsedTime() * 200)
+    // exhaust.current.scale.y = 1 + Math.sin(clock.getElapsedTime() * 200)
+    for (let i = 0; i < lasers.length; i++) {
+      const group = laserGroup.current.children[i]
+      group.position.z -= 20
+    }
+    laserLight.current.intensity += ((lasers.length && Date.now() - lasers[lasers.length - 1] < 100 ? 20 : 0) - laserLight.current.intensity) * 0.3
 
+    // Get ships orientation and save it to the stores ray
+    main.current.getWorldPosition(position)
+    main.current.getWorldDirection(direction)
+    ray.origin.copy(position)
+    ray.direction.copy(direction.negate())
+
+    // ...
+    // crossMaterial.color = mutation.hits ? lightgreen : hotpink
+    // cross.current.visible = !mutation.hits
+    // target.current.visible = !!mutation.hits
+  })
+ //TODO: END don't use useFrame in garage
   return (
     <group ref={main} position={staticPosition} scale={staticScale}>
       <group scale={[3.5, 3.5, 3.5]}>
@@ -88,14 +88,16 @@ export default function Ship({ staticPosition, staticScale }) {
       </group>
 
       // fuel fire TODO: don't show in garage
-      {/*<mesh ref={exhaust} scale={[.4, .4, 5]} position={[3.5, -1, 18]}>*/}
-      {/*  <dodecahedronBufferGeometry attach="geometry" args={[1.5, 2]} />*/}
-      {/*  <meshBasicMaterial attach="material" color="teal" />*/}
-      {/*</mesh>*/}
-      {/*<mesh ref={exhaust} scale={[.4, .4, 5]} position={[-3.5, -1, 18]}>*/}
-      {/*  <dodecahedronBufferGeometry attach="geometry" args={[1.5, 2]} />*/}
-      {/*  <meshBasicMaterial attach="material" color="teal" />*/}
-      {/*</mesh>*/}
+      <mesh ref={exhaust} scale={[.4, .4, 5]} position={[3.5, -1, 18]}>
+        <dodecahedronBufferGeometry attach="geometry" args={[1.5, 2]} />
+        <meshBasicMaterial attach="material" color="teal" />
+      </mesh>
+      <mesh ref={exhaust} scale={[.4, .4, 5]} position={[-3.5, -1, 18]}>
+        <dodecahedronBufferGeometry attach="geometry" args={[1.5, 2]} />
+        <meshBasicMaterial attach="material" color="teal" />
+      </mesh>
+
+       //TODO: END don't use useFrame in garage
     </group>
   )
 }

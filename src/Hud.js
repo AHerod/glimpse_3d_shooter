@@ -27,10 +27,10 @@ export default function Hud() {
       <UpperRight>
         screen
       </UpperRight>
-      <LowerLeft>
+      <Middle>
         <h1 ref={seconds}>0.0</h1>
         <h2>{score}</h2>
-      </LowerLeft>
+      </Middle>
       <Global />
       <LowerRight>
         <div style={{ width: health + '%' }} />
@@ -89,7 +89,7 @@ const UpperRight = styled.div`
   }
 `
 
-const LowerLeft = styled.div`
+const Middle = styled.div`
   ${base}
      font-family: 'Teko',sans-serif;
     position: absolute;
@@ -102,7 +102,7 @@ const LowerLeft = styled.div`
     left: 50%;
     transform: translateX(-50%);
     top: 0;
-    width: 345px;
+    width: 50vw;
     box-shadow: inset #ab54f5 1px 1px 20px 8px;
     display: flex;
     align-items: center;
@@ -115,7 +115,7 @@ const LowerLeft = styled.div`
     font-size: 3em;
     line-height: 1em;
     width:50px;
-    margin: 0 10px;
+    margin: 0 50px;
   }
   & > h2 {
     margin: 0;

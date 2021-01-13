@@ -43,26 +43,26 @@ export default function Game() {
         }} onMouseMove={onMouseMove}>
         <fog attach="fog" args={['#070710', 100, 700]} />
         <ambientLight intensity={0.1} />
-        {/*<Stars />*/}
+        <Stars />
         <Explosions />
         <Track />
-         {/*<group className={'swarmScreen'} style={{width: '100%', height: '100%'}} onMouseMove={onMouseMove}>*/}
-         {/*   <Bubble mouse={mouse} count={300} />*/}
-         {/* </group>*/}
-        {/*<CosmicDust />*/}
-        {/*<Rings />*/}
+         <group className={'swarmScreen'} style={{width: '100%', height: '100%'}} onMouseMove={onMouseMove}>
+            <Bubble mouse={mouse} count={300} />
+          </group>
+        <CosmicDust />
+        <Rings />
         <Suspense fallback={null}>
           {/*<Eyes/>*/}
-          {/*<Rocks />*/}
+          <Rocks />
           <SkyBox/>
-          {/*<Planets />*/}
-          {/*<Enemies />*/}
+          <Planets />
+          <Enemies />
           <Rig>
             <Ship />
           </Rig>
           {/*<Eye scale={[.8, .8, .8]} position={[35, -5, -35]}/>*/}
         </Suspense>
-        {/*<Effects />*/}
+        <Effects />
       </Canvas>
       <Hud />
     </div>

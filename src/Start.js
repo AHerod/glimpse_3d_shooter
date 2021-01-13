@@ -116,12 +116,12 @@ function Start() {
             GLIMPSE
           </Text>
         </group>
-        <mesh rotation={[-8, 2, -2]} position={[-40, -10, -10]}>
-          <Rings />
-        </mesh>
-         <mesh rotation={[2, -2, 2]} position={[100, 0, 0]}>
-          <Rings />
-        </mesh>
+        {/*<mesh rotation={[-8, 2, -2]} position={[-40, -10, -10]}>*/}
+        {/*  <Rings />*/}
+        {/*</mesh>*/}
+        {/* <mesh rotation={[2, -2, 2]} position={[100, 0, 0]}>*/}
+        {/*  <Rings />*/}
+        {/*</mesh>*/}
         <Cells mouse={mouse} count={500} />
         <Particles count={isMobile ? 1000 : 2000} mouse={mouse} />
       </Canvas>
