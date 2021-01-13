@@ -5,8 +5,6 @@ import useStore from './store'
 export default function Hud() {
   const points = useStore(state => state.points)
   const health = useStore(state => state.health)
-  const sound = useStore(state => state.sound)
-  const toggle = useStore(state => state.actions.toggleSound)
 
   const seconds = useRef()
   useEffect(() => {
@@ -19,14 +17,6 @@ export default function Hud() {
   return (
     <>
       <Shadow />
-      <UpperLeft onClick={() => toggle()}>
-        sound
-        <br />
-        {sound ? 'off' : 'on'}
-      </UpperLeft>
-      <UpperRight>
-        screen
-      </UpperRight>
       <Middle>
         <h1 ref={seconds}>0.0</h1>
         <h2>{score}</h2>
@@ -48,45 +38,6 @@ const base = css`
   line-height: 1em;
   pointer-events: none;
   color: #be47e1;
-`
-
-const UpperLeft = styled.div`
-  ${base}
-  top: 0;
-  left: 0;
-  font-size: 2em;
-  pointer-events: all;
-  cursor: pointer;
-  clip-path: polygon(0 0, 100% 0, 50% 50%, 0% 100%);
-  width: 230px;
-  height: 155px;
-   box-shadow: inset #ab54f5 -20px -20px 35px 10px;
-   padding: 20px;
-  @media only screen and (max-width: 900px) {
-    font-size: 1.5em;
-  }
-`
-
-const UpperRight = styled.div`
-  ${base}
-  text-align: right;
-  top: 0;
-  right: 0;
-  font-size: 2em;
-  pointer-events: all;
-  cursor: pointer;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 50%);
-  width: 230px;
-  height: 155px;
-  box-shadow: inset #ab54f5 20px -16px 35px 10px;
-   padding: 20px;
-  & > a {
-    color: indianred;
-    text-decoration: none;
-  }
-  @media only screen and (max-width: 900px) {
-    font-size: 1.5em;
-  }
 `
 
 const Middle = styled.div`
