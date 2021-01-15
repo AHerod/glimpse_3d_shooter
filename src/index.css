@@ -108,6 +108,10 @@ html, body, #root {
     cursor: url('https://raw.githubusercontent.com/chenglou/react-motion/master/demos/demo8-draggable-list/cursor.png') 39 39, auto;
 }
 
+*:hover {
+    cursor: url('https://raw.githubusercontent.com/chenglou/react-motion/master/demos/demo8-draggable-list/cursor.png') 39 39, auto;
+}
+
 button {
     border: none;
     outline: none;
@@ -145,10 +149,15 @@ canvas {
     right: 20px;
     z-index: 999999;
     background: none;
-    border: 2px solid #33ffbd;
+    /*border: 2px solid #5d0186;*/
     padding: 5px;
     cursor: pointer;
     pointer-events: all;
+}
+
+.fullscreen__btn.left {
+    right: auto;
+    left: 0;
 }
 
 .fullscreen .fullscreen__btn--enter {
@@ -276,4 +285,28 @@ canvas {
 
 .btn-back:hover {
     font-size: 2.1em;
+}
+
+.carousel-wrapper {
+    position: fixed;
+    top: 29vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40vw;
+    height: 25vh;
+    z-index: 9;
+}
+
+.slide {
+    width: 40vw;
+    height: 25vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.slide h1 {
+    text-align: center;
+    color: white;
 }

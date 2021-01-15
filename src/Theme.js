@@ -3,13 +3,9 @@ import React, { Suspense, useState, useCallback, useEffect, useRef, useMemo } fr
 import { Canvas, useFrame, useThree } from 'react-three-fiber'
 
 // Components & Effects
-// import Effects from './Effects'
 import Particles from './3d/Particles'
 import { Text, Billboard } from 'drei'
 import { Link } from 'react-router-dom'
-import CosmicDust from './3d/CosmicDust'
-import Stars from './3d/Stars'
-import Rings from './3d/Rings'
 import ThemeCarousel from './ThemeCarousel'
 
 function Cells({ count, mouse }) {
@@ -84,7 +80,8 @@ function Start() {
 
   return (
     <>
-      <Link to="/theme" className={'btn-next'}>Start</Link>
+      <Link to="/garage" className={'btn-next'}>Start</Link>
+      <ThemeCarousel/>
       <Canvas
         pixelRatio={Math.min(2, isMobile ? window.devicePixelRatio : 1)}
         camera={{ position: [0, 0, 12], fov: 80 }}
@@ -99,22 +96,15 @@ function Start() {
         <group>
           <Text
             color={'#5d0186'}
-            position={[0, 5, -5]}
+            position={[0, 9, -5]}
             fontSize={4}
             onPointerOver={() => setHiddenRedEye(false)}
             onPointerOut={() => setHiddenRedEye(true)}
             depthOffset={10}
-            font={'Nova Square'}
           >
-            GLIMPSE
+            Select Theme
           </Text>
         </group>
-        {/*<mesh rotation={[-8, 2, -2]} position={[-40, -10, -10]}>*/}
-        {/*  <Rings />*/}
-        {/*</mesh>*/}
-        {/* <mesh rotation={[2, -2, 2]} position={[100, 0, 0]}>*/}
-        {/*  <Rings />*/}
-        {/*</mesh>*/}
         <Cells mouse={mouse} count={500} />
         <Particles count={isMobile ? 1000 : 2000} mouse={mouse} />
       </Canvas>

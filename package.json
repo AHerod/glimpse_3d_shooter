@@ -5,6 +5,7 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
+    "@brainhubeu/react-carousel": "^1.19.26",
     "@react-three/drei": "^1.5.7",
     "drei": "1.4.0-alpha.0",
     "react": "^16.13.1",

@@ -18,6 +18,7 @@ import Hud from './Hud'
 import useStore from './store'
 import EyeModel from './3d/Eye'
 import SkyBox from './3d/SkyBox'
+import { Link } from 'react-router-dom'
 function Eyes() {
   const rocks = useStore(state => state.rocks)
   return rocks.map(data => console.log(data))
@@ -29,6 +30,7 @@ export default function Game() {
   const actions = useStore(state => state.actions)
   return (
     <div class="screen">
+      <Link to="/garage" className={'btn-next btn-back'}>Pause</Link>
       <Canvas
         concurrent
         gl={{ antialias: false }}
