@@ -306,7 +306,42 @@ canvas {
     z-index: 999;
 }
 
-.slide h1 {
+.slide h1,
+.BrainhubCarousel__arrows span {
     text-align: center;
-    color: white;
+    color: #ad14bc;
+    border-color: #ad14bc;
+}
+
+.BrainhubCarousel__arrows {
+    background-color: transparent;
+    box-shadow: inset #ab54f5 0 0 15px 0;
+    border-radius: 50%;
+}
+
+.BrainhubCarousel__arrows:focus,
+.BrainhubCarousel__arrows:hover {
+    background-color: rgba(61, 11, 89, 0.65) !important;
+}
+
+.BrainhubCarousel__arrows:hover span,
+.BrainhubCarousel__arrows:hover:enabled span {
+    border-color: #ab54f5;
+}
+
+.BrainhubCarousel__arrows:disabled {
+    background-color: initial;
+    opacity: .3;
+}
+
+.theme-grayscale {
+    filter: grayscale(1);
+}
+
+.theme-volcano {
+    filter: hue-rotate(90deg);
+}
+
+.theme-futuristic {
+    filter: hue-rotate(-100deg);
 }

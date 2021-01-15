@@ -24,7 +24,7 @@ function Garage() {
   return (
     <>
       <Link to="/target" className={'btn-next'}>NEXT</Link>
-      <Link to="/start" className={'btn-next btn-back'}>BACK</Link>
+      <Link to="/theme" className={'btn-next btn-back'}>BACK</Link>
       <Canvas
         pixelRatio={Math.min(2, isMobile ? window.devicePixelRatio : 1)}
         camera={{ position: [0, 0, 12], fov: 80 }}
