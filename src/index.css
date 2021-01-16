@@ -334,14 +334,14 @@ canvas {
     opacity: .3;
 }
 
-.theme-grayscale {
+.theme-grayscale .fullscreen {
     filter: grayscale(1);
 }
 
-.theme-volcano {
+.theme-volcano .fullscreen {
     filter: hue-rotate(90deg);
 }
 
-.theme-futuristic {
+.theme-futuristic .fullscreen {
     filter: hue-rotate(-100deg);
 }
