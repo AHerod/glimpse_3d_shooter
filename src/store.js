@@ -90,7 +90,7 @@ const [useStore, api] = create((set, get) => {
               enemies: state.enemies.filter(enemy => !e.find(e => e.guid === enemy.guid))
             }))
           }
-          //if (a.some(data => data.distance < 15)) set(state => ({ health: state.health - 1 }))
+          if (a.some(data => data.distance < 15)) set(state => ({ health: state.health - 1 }))
         })
       },
       shoot() {

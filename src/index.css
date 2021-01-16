@@ -345,3 +345,24 @@ canvas {
 .theme-futuristic .fullscreen {
     filter: hue-rotate(-100deg);
 }
+
+.theme-bio .fullscreen {
+    filter: hue-rotate(-200deg);
+}
+
+.view-icon > svg {
+  z-index: 999;
+  position: fixed;
+  top: auto;
+  bottom: 5vh;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2em;
+  pointer-events: all;
+  cursor: pointer;
+  width: 70px;
+  height:70px;
+  border-radius: 50%;
+  box-shadow: inset #ab54f5 -20px -20px 35px 10px;
+  fill: #5d0186;
+}

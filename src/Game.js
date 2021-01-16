@@ -16,12 +16,19 @@ import Hud from './Hud'
 import useStore from './store'
 import SkyBox from './3d/SkyBox'
 import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router'
 
 export default function Game() {
   const { fov } = useStore(state => state.mutation)
-   const mouse = useRef([0, 0])
-  const onMouseMove = useCallback(({clientX: x, clientY: y}) => (mouse.current = [x - window.innerWidth / 2, y - window.innerHeight / 2]), [])
+  const mouse = useRef([0, 0])
+  const onMouseMove = useCallback(({ clientX: x, clientY: y }) => (mouse.current = [x - window.innerWidth / 2, y - window.innerHeight / 2]), [])
   const actions = useStore(state => state.actions)
+  const history = useHistory()
+  // window.setTimeout(() => {
+  //   history.push({
+  //     pathname: '/start'
+  //   })
+  // }, 60000) // 60 s
   return (
     <div className={'screen'}>
       <Link to="/garage" className={'btn-next btn-back'}>Pause</Link>
@@ -42,14 +49,14 @@ export default function Game() {
         <Stars />
         <Explosions />
         <Track />
-         <group className={'swarmScreen'} style={{width: '100%', height: '100%'}} onMouseMove={onMouseMove}>
-            <Bubble mouse={mouse} count={300} />
-          </group>
+        <group className={'swarmScreen'} style={{ width: '100%', height: '100%' }} onMouseMove={onMouseMove}>
+          <Bubble mouse={mouse} count={300} />
+        </group>
         <CosmicDust />
         <Rings />
         <Suspense fallback={null}>
           <Rocks />
-          <SkyBox/>
+          <SkyBox />
           <Enemies />
           <Rig>
             <Ship />

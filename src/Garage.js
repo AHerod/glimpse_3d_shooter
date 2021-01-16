@@ -1,16 +1,14 @@
 import * as THREE from 'three'
 import React, { Suspense, useState, useCallback, useEffect, useRef, useMemo } from 'react'
-import { Canvas, useFrame, useThree } from 'react-three-fiber'
-import { Text, Billboard, OrbitControls, RoundedBox, Stars } from 'drei'
+import { Canvas } from 'react-three-fiber'
+import { Text, OrbitControls } from 'drei'
 // Components & Effects
-// import Effects from './Effects'
 import Particles from './3d/Particles'
 import { Link } from 'react-router-dom'
 import ShipOne from './3d/ShipOneGeometry'
 import ShipTwo from './3d/ShipTwoGeometry'
-import SkyBox from './3d/SkyBox'
-import Rig from './3d/Rig'
 import { Icosahedron } from '@react-three/drei'
+import ViewIcon from './ViewIcon'
 
 function Garage() {
   const [hovered] = useState(false)
@@ -23,6 +21,7 @@ function Garage() {
 
   return (
     <>
+      <ViewIcon/>
       <Link to="/target" className={'btn-next'}>NEXT</Link>
       <Link to="/theme" className={'btn-next btn-back'}>BACK</Link>
       <Canvas

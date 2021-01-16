@@ -1,14 +1,14 @@
 import * as THREE from 'three'
 import React, { Suspense, useState, useCallback, useEffect, useRef, useMemo } from 'react'
-import { Canvas, useFrame, useThree } from 'react-three-fiber'
-import { Text, Billboard, OrbitControls, RoundedBox, Stars } from 'drei'
+import { Canvas } from 'react-three-fiber'
+import { Text, OrbitControls } from 'drei'
 // Components & Effects
-// import Effects from './Effects'
 import Particles from './3d/Particles'
 import { Link } from 'react-router-dom'
 import RingTarget from './3d/RingTarget'
 import SquareTarget from './3d/SquareTarget'
 import { Icosahedron } from '@react-three/drei'
+import ViewIcon from './ViewIcon'
 
 function Garage() {
   const mouse = useRef([0, 0])
@@ -20,6 +20,7 @@ function Garage() {
 
   return (
     <>
+      <ViewIcon/>
       <Link to="/game" className={'btn-next'}>NEXT</Link>
       <Link to="/garage" className={'btn-next btn-back'}>BACK</Link>
         <Canvas
@@ -54,12 +55,8 @@ function Garage() {
             <Icosahedron material={laserMaterial} />
           </mesh>
         </Suspense>
-        {/*<mesh receiveShadow rotation={[5, 0, 0]} position={[0, -70, 0]}>*/}
-        {/*  <planeBufferGeometry attach="geometry" args={[10000, 10000]} />*/}
-        {/*  <meshStandardMaterial attach="material" color="#5d0186" />*/}
-        {/*</mesh>*/}
         <Particles count={isMobile ? 300 : 5000} mouse={mouse} color={'#5d0186'} />
-        <OrbitControls enableZoom={false} />
+        <OrbitControls />
       </Canvas>
     </>
   )

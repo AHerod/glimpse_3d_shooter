@@ -23,7 +23,8 @@ export default function Hud() {
       </Middle>
       <Global />
       <LowerRight>
-        <div style={{ width: health + '%' }} />
+        <div style={{ width: health + '%' }}/>
+        <h1>{health}<span>%</span></h1>
       </LowerRight>
     </>
   )
@@ -95,7 +96,7 @@ const LowerRight = styled.div`
   background: black;
   & > div {
     height: 100%;
-    background: indianred;
+    background: #780a83b0;
   }
 
   @media only screen and (max-width: 900px) {
