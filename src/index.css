@@ -105,11 +105,11 @@ html, body, #root {
     user-select: none;
     overflow: hidden;
     overscroll-behavior: none;
-    cursor: url('https://raw.githubusercontent.com/chenglou/react-motion/master/demos/demo8-draggable-list/cursor.png') 39 39, auto;
+    cursor: url('images/cursor_black.png') 39 39, auto;
 }
 
 *:hover {
-    cursor: url('https://raw.githubusercontent.com/chenglou/react-motion/master/demos/demo8-draggable-list/cursor.png') 39 39, auto;
+    cursor: url('images/cursor_black.png') 39 39, auto;
 }
 
 button {
@@ -149,9 +149,7 @@ canvas {
     right: 20px;
     z-index: 999999;
     background: none;
-    /*border: 2px solid #5d0186;*/
     padding: 5px;
-    cursor: pointer;
     pointer-events: all;
 }
 
@@ -208,7 +206,6 @@ canvas {
 }
 
 .btn-next {
-    cursor: none;
     position: fixed;
     top: 60vh;
     left: 50%;
@@ -358,7 +355,6 @@ canvas {
   right: 2vw;
   font-size: 2em;
   pointer-events: all;
-  cursor: pointer;
   width: 70px;
   height:70px;
   border-radius: 50%;

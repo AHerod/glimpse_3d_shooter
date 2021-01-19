@@ -101,6 +101,7 @@ const base = css`
   pointer-events: none;
   color: #be47e1;
   z-index: 999;
+  cursor: none;
 `
 
 const UpperLeft = styled.div`
@@ -109,7 +110,6 @@ const UpperLeft = styled.div`
   left: 0;
   font-size: 2em;
   pointer-events: all;
-  cursor: pointer;
   clip-path: polygon(0 0, 100% 0, 50% 50%, 0% 100%);
   width: 230px;
   height: 155px;
@@ -127,7 +127,6 @@ const UpperRight = styled.div`
   right: 0;
   font-size: 2em;
   pointer-events: all;
-  cursor: pointer;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 50%);
   width: 230px;
   height: 155px;

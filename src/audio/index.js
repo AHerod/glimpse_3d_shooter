@@ -3,8 +3,8 @@ import engineAudio from './engine.mp3'
 import engine2Audio from './engine2.mp3'
 import bgAudio from './bg.mp3'
 import warpAudio from './warp.mp3'
-import clickAudio from './click.mp3'
 import explosionAudio from './explosion.mp3'
+import laser2Audio from './laser2.mp3'
 
 const mp3 = { explosion: explosionAudio }
 
@@ -13,7 +13,7 @@ const engine = new Audio(engineAudio)
 const engine2 = new Audio(engine2Audio)
 const bg = new Audio(bgAudio)
 const warp = new Audio(warpAudio)
-const click = new Audio(clickAudio)
 const explosion = new Audio(explosionAudio)
+const laser2 = new Audio(laser2Audio)
 
-export { zap, engine, engine2, bg, warp, click, explosion, mp3 }
+export { zap, engine, engine2, bg, warp, explosion, mp3 , laser2}

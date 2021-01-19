@@ -14,6 +14,7 @@ const [useStore, api] = create((set, get) => {
   const box = new THREE.Box3()
 
   return {
+    target: 'crossMaterial',
     sound: false,
     camera: undefined,
     points: 0,
@@ -26,7 +27,7 @@ const [useStore, api] = create((set, get) => {
     mutation: {
       t: 0,
       position: new THREE.Vector3(),
-      startTime: Date.now(),
+      startTime: startTime(),
 
       track,
       scale: 15,
@@ -77,9 +78,10 @@ const [useStore, api] = create((set, get) => {
           const a = r.concat(e)
           const previous = mutation.hits
           mutation.hits = a.length
-          if (previous === 0 && mutation.hits) playAudio(audio.click)
+          if (previous === 0 && mutation.hits) playAudio(audio.laser2)
           const lasers = get().lasers
           if (mutation.hits && lasers.length && time - lasers[lasers.length - 1] < 100) {
+            playAudio(audio.laser2)
             const updates = a.map(data => ({ time: Date.now(), ...data }))
             set(state => ({ explosions: [...state.explosions, ...updates] }))
             clearTimeout(cancelExplosionTO)
@@ -130,8 +132,29 @@ function randomData(count, track, radius, size, scale) {
       .clone()
       .add(new THREE.Vector3(-radius + Math.random() * radius * 2, -radius + Math.random() * radius * 2, -radius + Math.random() * radius * 2))
     const speed = 0.1 + Math.random()
-    return { guid: guid++, scale: typeof scale === 'function' ? scale() : scale, size, offset, pos, speed, radius, t, hit: new THREE.Vector3(), distance: 1000 }
+    return {
+      guid: guid++,
+      scale: typeof scale === 'function' ? scale() : scale,
+      size,
+      offset,
+      pos,
+      speed,
+      radius,
+      t,
+      hit: new THREE.Vector3(),
+      distance: 1000
+    }
   })
+}
+
+function startTime() {
+  const ct = Date.now()
+  const pt = new Date()
+  console.log('Date.now()', Date.now());
+  console.log('new Date();', new Date());
+  const time = pt.setSeconds(pt.getSeconds() + 60)
+  console.log('time', time)
+  return Date.now()
 }
 
 function randomRings(count, track) {
