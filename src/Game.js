@@ -23,6 +23,8 @@ export default function Game() {
   const mouse = useRef([0, 0])
   const onMouseMove = useCallback(({ clientX: x, clientY: y }) => (mouse.current = [x - window.innerWidth / 2, y - window.innerHeight / 2]), [])
   const actions = useStore(state => state.actions)
+  const health = useStore(state => state.health)
+  let gameOver = health <= 0
   const history = useHistory()
   // window.setTimeout(() => {
   //   history.push({
@@ -30,7 +32,7 @@ export default function Game() {
   //   })
   // }, 60000) // 60 s
   return (
-    <div className={'screen'}>
+    <div className={'screen game'}>
       <Link to="/garage" className={'btn-next btn-back'}>Pause</Link>
       <Canvas
         concurrent
@@ -58,9 +60,11 @@ export default function Game() {
           <Rocks />
           <SkyBox />
           <Enemies />
+          {!gameOver &&
           <Rig>
             <Ship />
           </Rig>
+          }
         </Suspense>
         <Effects />
       </Canvas>

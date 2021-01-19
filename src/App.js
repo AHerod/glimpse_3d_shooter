@@ -31,7 +31,7 @@ export default function App() {
     <Router>
       <FullScreen handle={handle}>
         <UpperLeft onClick={() => toggle()}>
-          <div className={'sound-switcher'}>
+          <button className={'sound-switcher'}>
             {sound ?
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 511.448 511.448" fill={'#5d0186'} width={65}
                    height={65}>
@@ -49,7 +49,7 @@ export default function App() {
                   d="M320.247 180.535c-8.201-8.201-21.498-8.201-29.699 0s-8.2 21.498.001 29.699c25.142 25.143 25.144 65.836 0 90.98-13.27 13.27-3.691 35.85 14.849 35.85a20.94 20.94 0 0014.85-6.151c41.554-41.553 41.56-108.817-.001-150.378z" />
               </svg>
             }
-          </div>
+          </button>
         </UpperLeft>
         <UpperRight onClick={handle.active ? handle.exit : handle.enter}>
           <button className={'fullscreen__btn'}>

@@ -78,7 +78,8 @@ const [useStore, api] = create((set, get) => {
           const a = r.concat(e)
           const previous = mutation.hits
           mutation.hits = a.length
-          if (previous === 0 && mutation.hits) playAudio(audio.laser2)
+
+
           const lasers = get().lasers
           if (mutation.hits && lasers.length && time - lasers[lasers.length - 1] < 100) {
             playAudio(audio.laser2)
@@ -92,7 +93,7 @@ const [useStore, api] = create((set, get) => {
               enemies: state.enemies.filter(enemy => !e.find(e => e.guid === enemy.guid))
             }))
           }
-          if (a.some(data => data.distance < 15)) set(state => ({ health: state.health - 1 }))
+          if (a.some(data => data.distance < 15)) set(state => ({ health: state.health - 2 }))
         })
       },
       shoot() {
@@ -150,10 +151,7 @@ function randomData(count, track, radius, size, scale) {
 function startTime() {
   const ct = Date.now()
   const pt = new Date()
-  console.log('Date.now()', Date.now());
-  console.log('new Date();', new Date());
   const time = pt.setSeconds(pt.getSeconds() + 60)
-  console.log('time', time)
   return Date.now()
 }
 

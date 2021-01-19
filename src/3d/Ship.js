@@ -38,8 +38,8 @@ export default function Ship({ staticPosition, staticScale }) {
     main.current.rotation.y += (-mouse.x / 1200 - main.current.rotation.y) * 0.1
     main.current.position.x += (mouse.x / 10 - main.current.position.x) * 0.1
     main.current.position.y += (25 + -mouse.y / 10 - main.current.position.y) * 0.1
-    // exhaust.current.scale.x = 1 + Math.sin(clock.getElapsedTime() * 200)
-    // exhaust.current.scale.y = 1 + Math.sin(clock.getElapsedTime() * 200)
+    exhaust.current.scale.x = 1 + Math.sin(clock.getElapsedTime() * 200)
+    exhaust.current.scale.y = 1 + Math.sin(clock.getElapsedTime() * 200)
     for (let i = 0; i < lasers.length; i++) {
       const group = laserGroup.current.children[i]
       group.position.z -= 20

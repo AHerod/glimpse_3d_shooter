@@ -1,6 +1,7 @@
 import React, { useMemo, useRef, useEffect } from 'react'
-import styled, { css, createGlobalStyle } from 'styled-components'
+import styled, { css, createGlobalStyle, keyframes } from 'styled-components'
 import useStore from './store'
+import { Link } from 'react-router-dom'
 
 export default function Hud() {
   const points = useStore(state => state.points)
@@ -8,29 +9,52 @@ export default function Hud() {
 
   const seconds = useRef()
   useEffect(() => {
-    const ct = new Date();
-    const t = ct.setSeconds(ct.getSeconds() + 60);
+    const ct = new Date()
+    const t = ct.setSeconds(ct.getSeconds() + 60)
     const i = setInterval(() => (seconds.current.innerText = ((Date.now() - t) / 1000).toFixed(1)), 100)
     return () => clearInterval(i)
   }, [])
 
+  let gameOver = health <= 0;
   const score = useMemo(() => (points >= 1000 ? (points / 1000).toFixed(1) + 'K' : points), [points])
   return (
     <>
       <Shadow />
+      {
+        gameOver &&
+        <GameOver>
+          <h1>Game Over</h1>
+          <h2>Your Score: {score}</h2>
+           <Link to="/theme" className={'btn-next play-again'}>Play Again</Link>
+           <Link to="/start" className={'btn-next btn-back'}>Exit</Link>
+        </GameOver>
+      }
+
       <Middle>
         <h1 ref={seconds}>0.0</h1>
         <h2>{score}</h2>
       </Middle>
       <Global />
       <LowerRight>
-        <div style={{ width: health + '%' }}/>
-        <h1>{health}<span>%</span></h1>
+        <div style={{ width: health + '%' }} />
+        <h1>{health} <span>%</span> { health < 10 && <LowHP>LOW HP!</LowHP>}</h1>
       </LowerRight>
     </>
   )
 }
+const pulse = keyframes`
+  from {
+    transform: scale(1);
+    opacity: .7;
+    color: rgb(110, 92, 163);
+  }
 
+  to {
+    transform: scale(1.2);
+    opacity: 1;
+    color: #fff;
+  }
+`;
 const base = css`
   font-family: 'Teko', sans-serif;
   position: absolute;
@@ -41,10 +65,41 @@ const base = css`
   pointer-events: none;
   color: #be47e1;
 `
-
+const LowHP = styled.span `{
+  font-size: 2rem;
+  animation: ${pulse} .8s ease-in-out infinite;
+}`
+const GameOver = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,.7);
+  flex-direction: column;
+  box-shadow: inset 1px -1px 80px 0 #780a83b0;
+  h1 {
+  font-size: 6rem;
+  animation: ${pulse} .8s ease-in-out infinite;
+  text-transform: uppercase;
+  color: #5d0186 !important;
+  filter: drop-shadow(2px 4px 6px #000);
+  }
+  h2 {
+  padding: 20px 0;
+  color: #ab54f5;
+  font-size: 5rem;
+  margin-bottom: 100px;
+  filter: drop-shadow(2px 4px 6px #5d0186);
+  }
+  `
 const Middle = styled.div`
   ${base}
-     font-family: 'Teko',sans-serif;
+    font-family: 'Teko',sans-serif;
     position: absolute;
     text-transform: uppercase;
     font-weight: 900;
