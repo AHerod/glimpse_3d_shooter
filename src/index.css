@@ -355,8 +355,7 @@ canvas {
   position: fixed;
   top: auto;
   bottom: 5vh;
-  left: 50%;
-  transform: translateX(-50%);
+  right: 2vw;
   font-size: 2em;
   pointer-events: all;
   cursor: pointer;

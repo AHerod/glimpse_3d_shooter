@@ -9,6 +9,7 @@ import RingTarget from './3d/RingTarget'
 import SquareTarget from './3d/SquareTarget'
 import { Icosahedron } from '@react-three/drei'
 import ViewIcon from './ViewIcon'
+import TextMesh from './TextMesh'
 
 function Garage() {
   const mouse = useRef([0, 0])
@@ -34,14 +35,8 @@ function Garage() {
         <pointLight position={[0, 5, 2]} />
 
         <group>
-          <Text
-            color={'#5d0186'}
-            position={[0, 8, -5]}
-            fontSize={4}
-            depthOffset={10}
-          >
-            SELECT TARGET TYPE
-          </Text>
+          <pointLight position={[0, 5, 10]} intensity={.8} />
+          <TextMesh color={'#5d0186'} position={[0, 6, 0]} size={1.6} letter="SELECT TARGET TYPE"/>
         </group>
         <Suspense fallback={null}>
           <mesh onClick={() => setHiddenTargetTwo(true)} onPointerOver={(event) => setHiddenTargetTwo(true)}  position={[-80, 0, 200]}>

@@ -19,14 +19,12 @@ const position = new THREE.Vector3()
 const direction = new THREE.Vector3()
 
 export default function Ship({ staticPosition, staticScale }) {
-  const gltf = useLoader(GLTFLoader, '/ship.gltf')
   const mutation = useStore(state => state.mutation)
   const { clock, mouse, ray } = mutation
   const lasers = useStore(state => state.lasers)
   const main = useRef()
   const laserGroup = useRef()
   const laserLight = useRef()
-  const { nodes, materials } = useGLTFLoader('/newship.gltf')
   const exhaust = useRef()
   const cross = useRef()
   const target = useRef()

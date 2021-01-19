@@ -9,6 +9,7 @@ import ShipOne from './3d/ShipOneGeometry'
 import ShipTwo from './3d/ShipTwoGeometry'
 import { Icosahedron } from '@react-three/drei'
 import ViewIcon from './ViewIcon'
+import TextMesh from './TextMesh'
 
 function Garage() {
   const [hovered] = useState(false)
@@ -21,7 +22,7 @@ function Garage() {
 
   return (
     <>
-      <ViewIcon/>
+      <ViewIcon />
       <Link to="/target" className={'btn-next'}>NEXT</Link>
       <Link to="/theme" className={'btn-next btn-back'}>BACK</Link>
       <Canvas
@@ -33,27 +34,24 @@ function Garage() {
         }} onMouseMove={onMouseMove}>
         <fog attach="fog" args={['#070710', 100, 700]} />
         <pointLight position={[0, 5, 2]} />
-
         <group>
-          <Text
-            color={'#5d0186'}
-            position={[0, 7, -5]}
-            fontSize={4}
-            depthOffset={10}
-          >
-            SELECT YOUR SHIP
-          </Text>
+          <pointLight position={[0, 5, 10]} intensity={.2} />
+          <TextMesh color={'#5d0186'} position={[0, 5, 0]} size={1.6} letter="SELECT YOUR SHIP"/>
+        </group>
+        <group>
         </group>
         <Suspense fallback={null}>
-          <mesh onClick={() => setHiddenShipTwo(true)} onPointerOver={() => setHiddenShipTwo(true)} rotation={[0, -140, 0]} position={[-8, 0, 0]}
+          <mesh onClick={() => setHiddenShipTwo(true)} onPointerOver={() => setHiddenShipTwo(true)}
+                rotation={[0, -140, 0]} position={[-8, 0, 0]}
                 scale={hiddenShipTwo ? [0.8, 0.8, 0.8] : [0.6, 0.6, 0.6]}>
             <ShipOne />
           </mesh>
-          <mesh onClick={() => setHiddenShipTwo(false)} onPointerOver={() => setHiddenShipTwo(false)} rotation={[0, 140, 0]} position={[8, 0, 0]}
+          <mesh onClick={() => setHiddenShipTwo(false)} onPointerOver={() => setHiddenShipTwo(false)}
+                rotation={[0, 140, 0]} position={[8, 0, 0]}
                 scale={hiddenShipTwo ? [0.6, 0.6, 0.6] : [0.8, 0.8, 0.8]}>
             <ShipTwo />
           </mesh>
-          <mesh position={hiddenShipTwo ? [-8, -4, 0] :  [8, -4, 0]} >
+          <mesh position={hiddenShipTwo ? [-8, -4, 0] : [8, -4, 0]}>
             <meshStandardMaterial attach="material" color="#5d0186" />
             <Icosahedron material={laserMaterial} />
           </mesh>

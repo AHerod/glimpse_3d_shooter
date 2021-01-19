@@ -7,6 +7,7 @@ import Particles from './3d/Particles'
 import { Text, Billboard } from 'drei'
 import { Link } from 'react-router-dom'
 import ThemeCarousel from './ThemeCarousel'
+import TextMesh from './TextMesh'
 
 function Cells({ count, mouse }) {
   const mesh = useRef()
@@ -73,7 +74,6 @@ function Cells({ count, mouse }) {
 }
 
 function Start() {
-  const [hiddenRedEye, setHiddenRedEye] = useState(true)
   const mouse = useRef([0, 0])
   const onMouseMove = useCallback(({ clientX: x, clientY: y }) => (mouse.current = [x - window.innerWidth / 2, y - window.innerHeight / 2]), [])
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
@@ -95,16 +95,8 @@ function Start() {
         <pointLight position={[-10, 0, -20]} intensity={.1} />
         <pointLight position={[-20, -10, -40]} intensity={.1} />
         <group>
-          <Text
-            color={'#5d0186'}
-            position={[0, 9, -5]}
-            fontSize={4}
-            onPointerOver={() => setHiddenRedEye(false)}
-            onPointerOut={() => setHiddenRedEye(true)}
-            depthOffset={10}
-          >
-            Select Theme
-          </Text>
+          <pointLight  position={[0, 5, 10]} intensity={.8} />
+          <TextMesh color={'#5d0186'}  position={[0, 5, 0]} size={1.6} letter="SELECT THEME"/>
         </group>
         <Cells mouse={mouse} count={500} />
         <Particles count={isMobile ? 1000 : 2000} mouse={mouse} />

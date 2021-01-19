@@ -3,14 +3,9 @@ import React, { Suspense, useState, useCallback, useEffect, useRef, useMemo } fr
 import { Canvas, useFrame, useThree } from 'react-three-fiber'
 
 // Components & Effects
-// import Effects from './Effects'
 import Particles from './3d/Particles'
-import { Text, Billboard } from 'drei'
 import { Link } from 'react-router-dom'
-import CosmicDust from './3d/CosmicDust'
-import Stars from './3d/Stars'
-import Rings from './3d/Rings'
-import ThemeCarousel from './ThemeCarousel'
+import TextMesh from './TextMesh'
 
 function Cells({ count, mouse }) {
   const mesh = useRef()
@@ -94,27 +89,9 @@ function Start() {
 
         <fog attach="fog" args={['lightblue', 15, 150]} />
         <ambientLight intensity={0.3} />
-        <pointLight position={[-10, 0, -20]} intensity={.1} />
+        <pointLight position={[0, 0, 10]} intensity={1} />
         <pointLight position={[-20, -10, -40]} intensity={.1} />
-        <group>
-          <Text
-            color={'#5d0186'}
-            position={[0, 5, -5]}
-            fontSize={4}
-            onPointerOver={() => setHiddenRedEye(false)}
-            onPointerOut={() => setHiddenRedEye(true)}
-            depthOffset={10}
-            font={'Nova Square'}
-          >
-            GLIMPSE
-          </Text>
-        </group>
-        {/*<mesh rotation={[-8, 2, -2]} position={[-40, -10, -10]}>*/}
-        {/*  <Rings />*/}
-        {/*</mesh>*/}
-        {/* <mesh rotation={[2, -2, 2]} position={[100, 0, 0]}>*/}
-        {/*  <Rings />*/}
-        {/*</mesh>*/}
+          <TextMesh color={'#5d0186'} position={[0, 3, 0]} size={3} letter="GLIMPSE"/>
         <Cells mouse={mouse} count={500} />
         <Particles count={isMobile ? 1000 : 2000} mouse={mouse} />
       </Canvas>

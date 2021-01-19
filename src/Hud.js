@@ -8,7 +8,8 @@ export default function Hud() {
 
   const seconds = useRef()
   useEffect(() => {
-    const t = Date.now()
+    const ct = new Date();
+    const t = ct.setSeconds(ct.getSeconds() + 60);
     const i = setInterval(() => (seconds.current.innerText = ((Date.now() - t) / 1000).toFixed(1)), 100)
     return () => clearInterval(i)
   }, [])
