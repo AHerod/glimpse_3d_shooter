@@ -25,12 +25,6 @@ export default function Game() {
   const actions = useStore(state => state.actions)
   const health = useStore(state => state.health)
   let gameOver = health <= 0
-  const history = useHistory()
-  // window.setTimeout(() => {
-  //   history.push({
-  //     pathname: '/start'
-  //   })
-  // }, 60000) // 60 s
   return (
     <div className={'screen game'}>
       <Link to="/garage" className={'btn-next btn-back'}>Pause</Link>

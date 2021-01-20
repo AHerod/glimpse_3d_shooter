@@ -10,6 +10,7 @@ import ShipTwo from './3d/ShipTwoGeometry'
 import { Icosahedron } from '@react-three/drei'
 import ViewIcon from './ViewIcon'
 import TextMesh from './TextMesh'
+import useStore from './store'
 
 function Garage() {
   const [hovered] = useState(false)
@@ -18,7 +19,8 @@ function Garage() {
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
   const laserMaterial = new THREE.MeshStandardMaterial({ color: '#5d0186', emissive: '#5d0186', roughness: '1' })
   const [hiddenShipTwo, setHiddenShipTwo] = useState(true)
-
+  let shipOne = useStore(state => state.shipOne)
+  const actions = useStore(state => state.actions)
 
   return (
     <>
@@ -36,17 +38,21 @@ function Garage() {
         <pointLight position={[0, 5, 2]} />
         <group>
           <pointLight position={[0, 5, 10]} intensity={.2} />
-          <TextMesh color={'#5d0186'} position={[0, 5, 0]} size={1.6} letter="SELECT YOUR SHIP"/>
+          <TextMesh color={'#5d0186'} position={[0, 5, 0]} size={1.6} letter="SELECT YOUR SHIP" />
         </group>
         <group>
         </group>
         <Suspense fallback={null}>
-          <mesh onClick={() => setHiddenShipTwo(true)} onPointerOver={() => setHiddenShipTwo(true)}
+          <mesh onClick={() => setHiddenShipTwo(true)} onPointerOver={() => {
+            actions.useShipOne(); setHiddenShipTwo(true)
+          }}
                 rotation={[0, -140, 0]} position={[-8, 0, 0]}
                 scale={hiddenShipTwo ? [0.8, 0.8, 0.8] : [0.6, 0.6, 0.6]}>
             <ShipOne />
           </mesh>
-          <mesh onClick={() => setHiddenShipTwo(false)} onPointerOver={() => setHiddenShipTwo(false)}
+          <mesh onClick={() => setHiddenShipTwo(false)} onPointerOver={() => {
+            actions.useShipTwo(); setHiddenShipTwo(false)
+          }}
                 rotation={[0, 140, 0]} position={[8, 0, 0]}
                 scale={hiddenShipTwo ? [0.6, 0.6, 0.6] : [0.8, 0.8, 0.8]}>
             <ShipTwo />

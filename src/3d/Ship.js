@@ -26,8 +26,8 @@ export default function Ship({ staticPosition, staticScale }) {
   const laserGroup = useRef()
   const laserLight = useRef()
   const exhaust = useRef()
-  const cross = useRef()
-  const target = useRef()
+  const shipOne = useStore(state => state.shipOne)
+  const targetOne = useStore(state => state.targetOne)
 
   //TODO: don't use useFrame in garage
 
@@ -63,8 +63,8 @@ export default function Ship({ staticPosition, staticScale }) {
       <group scale={[3.5, 3.5, 3.5]}>
 
         // target
-<SquareTarget />
-{/*        <RingTarget/>*/}
+        {targetOne && <RingTarget/>}
+        {!targetOne && <SquareTarget/>}
 
         // shooting laser
         <pointLight ref={laserLight} position={[0, 0, -20]} distance={100} intensity={0} color="lightgreen" />
@@ -78,11 +78,9 @@ export default function Ship({ staticPosition, staticScale }) {
         </group>
 
         // model ship1
-        <ShipOneGeometry/>
-        {/*<ShipTwoGeometry/>*/}
-
+        {shipOne && <ShipOneGeometry/>}
         //model ship2
-
+        {!shipOne &&  <ShipTwoGeometry/>}
       </group>
 
       // fuel fire TODO: don't show in garage

@@ -14,8 +14,9 @@ const [useStore, api] = create((set, get) => {
   const box = new THREE.Box3()
 
   return {
-    target: 'crossMaterial',
-    sound: false,
+    sound: true,
+    shipOne: true,
+    targetOne: true,
     camera: undefined,
     points: 0,
     health: 100,
@@ -93,7 +94,7 @@ const [useStore, api] = create((set, get) => {
               enemies: state.enemies.filter(enemy => !e.find(e => e.guid === enemy.guid))
             }))
           }
-          if (a.some(data => data.distance < 15)) set(state => ({ health: state.health - 2 }))
+          if (a.some(data => data.distance < 15)) set(state => ({ health: state.health - 10 }))
         })
       },
       shoot() {
@@ -110,6 +111,18 @@ const [useStore, api] = create((set, get) => {
       },
       updateMouse({ clientX: x, clientY: y }) {
         get().mutation.mouse.set(x - window.innerWidth / 2, y - window.innerHeight / 2)
+      },
+      useShipOne(shipOne = true) {
+        set({ shipOne })
+      },
+      useShipTwo(shipOne = false) {
+        set({ shipOne })
+      },
+      useTargetOne(targetOne = true) {
+        set({ targetOne })
+      },
+      useTargetTwo(targetOne = false) {
+        set({ targetOne })
       },
       test(data) {
         box.min.copy(data.offset)

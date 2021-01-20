@@ -10,6 +10,7 @@ import SquareTarget from './3d/SquareTarget'
 import { Icosahedron } from '@react-three/drei'
 import ViewIcon from './ViewIcon'
 import TextMesh from './TextMesh'
+import useStore from './store'
 
 function Garage() {
   const mouse = useRef([0, 0])
@@ -17,7 +18,7 @@ function Garage() {
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
   const laserMaterial = new THREE.MeshStandardMaterial({ color: '#5d0186', emissive: '#5d0186', roughness: '1' })
   const [hiddenShipTwo, setHiddenTargetTwo] = useState(true)
-
+  const actions = useStore(state => state.actions)
 
   return (
     <>
@@ -39,10 +40,14 @@ function Garage() {
           <TextMesh color={'#5d0186'} position={[0, 6, 0]} size={1.6} letter="SELECT TARGET TYPE"/>
         </group>
         <Suspense fallback={null}>
-          <mesh onClick={() => setHiddenTargetTwo(true)} onPointerOver={(event) => setHiddenTargetTwo(true)}  position={[-80, 0, 200]}>
+          <mesh onClick={() => setHiddenTargetTwo(true)} onPointerOver={(event) => {
+            actions.useTargetOne(); setHiddenTargetTwo(true)
+          }}  position={[-80, 0, 200]}>
             <RingTarget />
           </mesh>
-          <mesh onClick={() => setHiddenTargetTwo(false)} onPointerOver={(event) => setHiddenTargetTwo(false)} position={[80, 0, 200]}>
+          <mesh onClick={() => setHiddenTargetTwo(false)} onPointerOver={(event) => {
+            actions.useTargetTwo(); setHiddenTargetTwo(false)
+          }} position={[80, 0, 200]}>
             <SquareTarget />
           </mesh>
           <mesh position={hiddenShipTwo ? [-16, -10, -10] :  [16, -10, -10]}  scale={[2,2,2]}>
