@@ -143,10 +143,9 @@ canvas {
 }
 
 .fullscreen .fullscreen__btn {
-  position: fixed;
   width: 50px;
   height: 50px;
-  right: 20px;
+  left: 60px;
   z-index: 999999;
   background: none;
   padding: 5px;
