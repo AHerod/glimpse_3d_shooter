@@ -32,10 +32,20 @@ export default function App() {
     <Router>
       <FullScreen handle={handle}>
         <ModalTrigger className={'modal-trigger'} onClick={() => showModal(true)}>i</ModalTrigger>
-        <Backdrop className={isOpen ? 'backdrop' : 'elo'}>
-          {isOpen && <Modal>
-          <button onClick={() => showModal(false)}>Close Modal</button>
+        <Backdrop className={isOpen ? 'backdrop' : 'elo'}> </Backdrop>
+        {isOpen && <Modal className={isOpen ? 'show' : 'hide'}>
+          <div onClick={() => showModal(false)}>
+            <svg fill={'#5d0186'} width={45}
+                 height={45} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384.97 384.97">
+              <defs />
+              <path
+                d="M192.485 0C86.173 0 0 86.173 0 192.485c0 106.3 86.173 192.485 192.485 192.485 106.3 0 192.485-86.173 192.485-192.485S298.785 0 192.485 0zm0 360.909c-93.018 0-168.424-75.406-168.424-168.424S99.467 24.061 192.485 24.061s168.424 75.406 168.424 168.424-75.406 168.424-168.424 168.424z" />
+              <path
+                d="M273.437 255.897l-63.376-63.388 63.015-62.497a11.931 11.931 0 000-17.011c-4.74-4.692-12.439-4.692-17.179 0l-62.931 62.413-63.869-63.881c-4.74-4.764-12.439-4.764-17.179 0-4.74 4.752-4.74 12.475 0 17.227l63.773 63.785-64.134 63.604c-4.74 4.704-4.74 12.319 0 17.011 4.74 4.704 12.439 4.704 17.191 0l64.049-63.52 63.472 63.472c4.74 4.764 12.439 4.764 17.179 0 4.729-4.74 4.729-12.451-.011-17.215z" />
+            </svg>
+          </div>
           <div>
+            <h1>SOUND {sound ? <span>ON</span> : <span>OFF</span>}</h1>
             <button className={'sound-switcher'} onClick={() => toggle()}>
               {sound ?
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 511.448 511.448" fill={'#5d0186'} width={65}
@@ -55,6 +65,7 @@ export default function App() {
                 </svg>
               }
             </button>
+            <h1>FULLSCREEN {handle.active ? <span>ON</span> : <span>OFF</span>}</h1>
             <button className={'fullscreen__btn'} onClick={handle.active ? handle.exit : handle.enter}>
               <svg className={'fullscreen__btn--enter'} xmlns="http://www.w3.org/2000/svg"
                    viewBox="0 0 451.111 451.111">
@@ -71,8 +82,22 @@ export default function App() {
               </svg>
             </button>
           </div>
+          <Navigation>
+            <h1>Navigation</h1>
+            <div>
+              <div>
+                <p>Click and drag to look around</p>
+                <img src={require('./images/mouse_drag_left.png')} alt="" />
+              </div>
+              <div><p>Click to select</p>
+                <img src={require('./images/mouse_click.png')} alt="" /></div>
+              <div>
+                <p>Use the scroll wheel to zoom in and out</p>
+                <img src={require('./images/mouse_zoom.png')} alt="" />
+              </div>
+            </div>
+          </Navigation>
         </Modal>}
-        </Backdrop>
         <Global />
         <Switch>
           <Route path="/theme">
@@ -107,6 +132,28 @@ const base = css`
   color: #be47e1;
   z-index: 999;
 `
+
+const Navigation = styled.div`{
+display: flex; 
+flex-direction: column;
+> div {
+display: flex;
+justify-content: space-between;
+align-items:center;
+
+> div {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+text-align: center;
+}
+}
+img {
+vertical-align: middle;
+height: 120px;
+}
+}`
 const Backdrop = styled.div`
 &.backdrop{
   ${base}
@@ -128,6 +175,7 @@ const ModalTrigger = styled.button`
   font-size: 2em;
   pointer-events: all;
   text-transform: initial;
+  z-index:999999;
    box-shadow: inset #ab54f5 0px 0px 20px 0px;
    padding: 20px;
   @media only screen and (max-width: 900px) {
@@ -139,15 +187,36 @@ const Modal = styled.div`
   ${base}
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
   font-size: 2em;
   pointer-events: all;
-  width: 230px;
-  height: 155px;
+  width: 65vw;
+  height: 60vh;
+  background: rgb(19 2 22 / .7);
    box-shadow: #ab54f5 -6px -1px 20px 17px;
-   padding: 20px;
+   padding: 25px;
+       border-radius: 50px;
   @media only screen and (max-width: 900px) {
     font-size: 1.5em;
+  }
+  
+  &.hide {
+  z-index: -1;
+  opacity:0;
+  animation: hide .25s;
+  transform: translate(-50%,-50%) scale(0);
+  }
+  &.show {
+  z-index: 99999;
+  opacity:1;
+  animation: show .25s;
+  transform: translate(-50%,-50%) scale(1);
+  }
+  
+  h1 {
+  line-height: normal;
+  color: #5d0186;
+  font-size: 3.5rem;
+  margin: 20px 0;
   }
   > div {
     display: flex;
@@ -189,5 +258,31 @@ const Global = createGlobalStyle`
   .screen {
     width: 100vw;
     height: 100vh;
+  }
+  
+  @keyframes hide {
+  from {
+  z-index:99999;
+  transform: translate(-50%,-50%) scale(1);
+  opacity: 1;
+  }
+  to {
+  z-index: -1;
+  transform: translate(-50%,-50%) scale(0);
+  opacity: 0;
+  }
+  }
+  
+  @keyframes show {
+  from {
+  z-index: -1;
+  transform: translate(-50%,-50%) scale(0);
+  opacity:0;
+  }
+  to {
+  z-index: 99999;
+  transform: translate(-50%,-50%) scale(1);
+  opacity: 1;
+  }
   }
 `
