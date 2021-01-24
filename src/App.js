@@ -83,7 +83,7 @@ export default function App() {
             </button>
           </div>
           <Navigation>
-            <h1>Navigation</h1>
+            <h2>Navigation</h2>
             <div>
               <div>
                 <p>Click and drag to look around</p>
@@ -136,22 +136,27 @@ const base = css`
 const Navigation = styled.div`{
 display: flex; 
 flex-direction: column;
-> div {
-display: flex;
-justify-content: space-between;
-align-items:center;
-
-> div {
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-text-align: center;
-}
-}
+  > div {
+    display: flex;
+    justify-content: space-evenly;
+    align-items:center;
+  
+  > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+    }
+  }
+  
+  p {
+  padding: 15px 30px;
+  }
 img {
-vertical-align: middle;
-height: 120px;
+  vertical-align: middle;
+  height: 120px;
 }
 }`
 const Backdrop = styled.div`
@@ -212,12 +217,15 @@ const Modal = styled.div`
   transform: translate(-50%,-50%) scale(1);
   }
   
-  h1 {
+  h1,h2 {
   line-height: normal;
-  color: #5d0186;
+  color: #be47e1;
   font-size: 3.5rem;
   margin: 20px 0;
   }
+  h2 {
+   color: #5d0186;
+ }
   > div {
     display: flex;
     align-items: center;
