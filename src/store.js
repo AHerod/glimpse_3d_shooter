@@ -14,7 +14,7 @@ const [useStore, api] = create((set, get) => {
   const box = new THREE.Box3()
 
   return {
-    sound: true,
+    sound: false,
     shipOne: true,
     targetOne: true,
     camera: undefined,
@@ -101,12 +101,11 @@ const [useStore, api] = create((set, get) => {
         set(state => ({ lasers: [...state.lasers, Date.now()] }))
         clearTimeout(cancelLaserTO)
         cancelLaserTO = setTimeout(() => set(state => ({ lasers: state.lasers.filter(t => Date.now() - t <= 1000) })), 1000)
-        playAudio(audio.zap, 0.5)
+        playAudio(audio.laser, 0.5)
       },
       toggleSound(sound = !get().sound) {
         set({ sound })
         playAudio(audio.engine, 1, true)
-        playAudio(audio.engine2, 0.3, true)
         playAudio(audio.bg, 1, true)
       },
       updateMouse({ clientX: x, clientY: y }) {

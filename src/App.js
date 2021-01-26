@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 // React Router
 
 //Components
@@ -19,13 +19,18 @@ import {
   Link
 } from 'react-router-dom'
 import styled, { createGlobalStyle, css } from 'styled-components'
-import useStore from './store'
+import useStore, { audio, playAudio } from './store'
+
 
 export default function App() {
   const sound = useStore(state => state.sound)
   const toggle = useStore(state => state.actions.toggleSound)
   const handle = useFullScreenHandle()
   const [isOpen, showModal] = useState(false)
+    const actions = useStore(state => state.actions)
+
+   // useEffect(() => void playAudio(new Audio(audio.mp3.bg), 0.5, true), [], )
+   // useEffect(() =>  actions.toggleSound(true))
 
   return (
 
