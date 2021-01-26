@@ -15,18 +15,19 @@ export default function Hud() {
     return () => clearInterval(i)
   }, [])
 
-  let gameOver = health <= 0;
+  let gameOver = health <= 0
   const score = useMemo(() => (points >= 1000 ? (points / 1000).toFixed(1) + 'K' : points), [points])
   return (
     <>
       <Shadow />
-      {
-        gameOver &&
+      { gameOver &&
         <GameOver>
-          <h1>Game Over</h1>
-          <h2>Your Score: {score}</h2>
-           <Link to="/theme" className={'btn-next play-again'}>Play Again</Link>
-           <Link to="/start" className={'btn-next btn-back'}>Exit</Link>
+          <Modal className={'show'}>
+            <h1>Game Over</h1>
+            <h2>Your Score: {score}</h2>
+            <Link to="/theme" className={'btn-next play-again'}>Play Again</Link>
+            <Link to="/start" className={'btn-next btn-back'}>Exit</Link>
+          </Modal>
         </GameOver>
       }
 
@@ -37,7 +38,7 @@ export default function Hud() {
       <Global />
       <LowerRight>
         <div style={{ width: health + '%' }} />
-        <h1>{health} <span>%</span> { health < 10 && <LowHP>LOW HP!</LowHP>}</h1>
+        <h1>{health} <span>%</span> {health < 10 && <LowHP>LOW HP!</LowHP>}</h1>
       </LowerRight>
     </>
   )
@@ -54,7 +55,7 @@ const pulse = keyframes`
     opacity: 1;
     color: #fff;
   }
-`;
+`
 const base = css`
   font-family: 'Teko', sans-serif;
   position: absolute;
@@ -65,7 +66,7 @@ const base = css`
   pointer-events: none;
   color: #be47e1;
 `
-const LowHP = styled.span `{
+const LowHP = styled.span`{
   font-size: 2rem;
   animation: ${pulse} .8s ease-in-out infinite;
 }`
@@ -92,9 +93,12 @@ const GameOver = styled.div`
   h2 {
   padding: 20px 0;
   color: #ab54f5;
-  font-size: 5rem;
+  font-size: 2rem;
   margin-bottom: 100px;
-  filter: drop-shadow(2px 4px 6px #5d0186);
+  }
+  .play-again {
+    font-size: 1.5em;
+    padding-top: 28px;
   }
   `
 const Middle = styled.div`
@@ -203,5 +207,44 @@ const Global = createGlobalStyle`
   .screen {
     width: 100vw;
     height: 100vh;
+  }
+`
+const Modal = styled.div`
+  ${base}
+  top: 50%;
+  left: 50%;
+  font-size: 2em;
+  pointer-events: all;
+  width: 65vw;
+  min-height: 60vh;
+  background: rgb(19 2 22 / .7);
+   box-shadow: #ab54f5 -6px -1px 20px 17px;
+   padding: 25px;
+       border-radius: 50px;
+       text-align: center;
+  @media only screen and (max-width: 900px) {
+    font-size: 1.5em;
+  }
+  
+  &.show {
+  z-index: 99999;
+  opacity:1;
+  animation: show .25s;
+  transform: translate(-50%,-50%) scale(1);
+  }
+  
+  h1,h2 {
+  line-height: normal;
+  color: #be47e1;
+  font-size: 3.5rem;
+  margin: 20px 0;
+  }
+  h2 {
+   color: #5d0186;
+ }
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
   }
 `

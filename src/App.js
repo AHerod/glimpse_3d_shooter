@@ -195,8 +195,8 @@ const Modal = styled.div`
   font-size: 2em;
   pointer-events: all;
   width: 65vw;
-  height: 60vh;
-  background: rgb(19 2 22 / .7);
+  min-height: 60vh;
+  background: rgb(19 2 22 / .8);
    box-shadow: #ab54f5 -6px -1px 20px 17px;
    padding: 25px;
        border-radius: 50px;

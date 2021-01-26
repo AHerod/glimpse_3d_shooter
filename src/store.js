@@ -22,7 +22,7 @@ const [useStore, api] = create((set, get) => {
     health: 100,
     lasers: [],
     explosions: [],
-    rocks: randomData(50, track, 150, 8, () => 1 + Math.random() * 2.5),
+    rocks: randomData(200, track, 150, 8, () => 1 + Math.random() * 2.5),
     enemies: randomData(10, track, 20, 15, 1),
 
     mutation: {

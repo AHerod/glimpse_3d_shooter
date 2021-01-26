@@ -308,6 +308,12 @@ canvas {
 .play-again {
   line-height: 1em;
   padding-top: 38px;
+  font-size: 4rem;
+  top: initial;
+}
+
+.play-again:hover {
+  font-size: 4.2rem;
 }
 .carousel-wrapper {
   position: fixed;

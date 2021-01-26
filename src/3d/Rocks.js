@@ -21,7 +21,7 @@ const Rock = React.memo(({ gltf, data }) => {
       <object3D
         position={[-0.016298329457640648, -0.012838120572268963, 0.24073271453380585]}
         rotation={[3.0093872578726644, 0.27444228385461117, -0.22745113653772078]}
-        scale={[20, 20, 20]}>
+        scale={[25, 25, 25]}>
         <mesh>
           <bufferGeometry attach="geometry" {...gltf.__$[7].geometry} />
           <meshLambertMaterial attach="material" {...gltf.__$[7].material} color="#499E1E" emissive={'#499E1E'} emissiveIntensity={'.5'} />
