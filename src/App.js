@@ -7,7 +7,7 @@ import Garage from './Garage'
 import Game from './Game'
 import Start from './Start'
 import Target from './Target'
-
+import Timer from './Timer'
 
 // FS
 import { FullScreen, useFullScreenHandle } from 'react-full-screen'
@@ -108,6 +108,9 @@ export default function App() {
           </Route>
           <Route path="/target">
             <Target />
+          </Route>
+          <Route path="/timer">
+            <Timer />
           </Route>
           <Route path="/game">
             <Game />

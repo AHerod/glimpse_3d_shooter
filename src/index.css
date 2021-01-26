@@ -393,6 +393,6 @@ canvas {
   fill: #5d0186;
 }
 
-.game {
+.game canvas {
   cursor: none;
 }

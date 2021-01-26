@@ -12,7 +12,7 @@ import ViewIcon from './ViewIcon'
 import TextMesh from './TextMesh'
 import useStore from './store'
 
-function Garage() {
+function Target() {
   const mouse = useRef([0, 0])
   const onMouseMove = useCallback(({ clientX: x, clientY: y }) => (mouse.current = [x - window.innerWidth / 3, y - window.innerHeight / 3]), [])
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
@@ -23,7 +23,7 @@ function Garage() {
   return (
     <>
       <ViewIcon/>
-      <Link to="/game" className={'btn-next'}>NEXT</Link>
+      <Link to="/timer" className={'btn-next'}>START</Link>
       <Link to="/garage" className={'btn-next btn-back'}>BACK</Link>
         <Canvas
         pixelRatio={Math.min(2, isMobile ? window.devicePixelRatio : 1)}
@@ -63,4 +63,4 @@ function Garage() {
 }
 
 
-export default Garage
+export default Target

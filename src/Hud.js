@@ -6,39 +6,42 @@ import { Link } from 'react-router-dom'
 export default function Hud() {
   const points = useStore(state => state.points)
   const health = useStore(state => state.health)
+  let [counter, setCounter] = React.useState(60);
 
-  const seconds = useRef()
-  useEffect(() => {
-    const ct = new Date()
-    const t = ct.setSeconds(ct.getSeconds() + 60)
-    const i = setInterval(() => (seconds.current.innerText = ((Date.now() - t) / 1000).toFixed(1)), 100)
-    return () => clearInterval(i)
-  }, [])
+  React.useEffect(() => {
+    const timer =
+      counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
+    return () => clearInterval(timer);
+  }, [counter]);
 
-  let gameOver = health <= 0
+
+  let timesOut = counter === 0;
+  let death = health <= 0;
   const score = useMemo(() => (points >= 1000 ? (points / 1000).toFixed(1) + 'K' : points), [points])
   return (
     <>
       <Shadow />
-      { gameOver &&
+      { timesOut || death &&
         <GameOver>
+          <Link to="/garage" className={'btn-next btn-back'}>BACK</Link>
           <Modal className={'show'}>
+            <h3> {timesOut ? 'Your ran out of time!' : 'Your ship is destroyed!'}</h3>
             <h1>Game Over</h1>
             <h2>Your Score: {score}</h2>
-            <Link to="/theme" className={'btn-next play-again'}>Play Again</Link>
+            <Link to="/timer" className={'btn-next play-again'}>Play Again</Link>
             <Link to="/start" className={'btn-next btn-back'}>Exit</Link>
           </Modal>
         </GameOver>
       }
 
       <Middle>
-        <h1 ref={seconds}>0.0</h1>
+        <h1>{counter}</h1>
         <h2>{score}</h2>
       </Middle>
       <Global />
       <LowerRight>
         <div style={{ width: health + '%' }} />
-        <h1>{health} <span>%</span> {health < 10 && <LowHP>LOW HP!</LowHP>}</h1>
+        <h1>{health} <span>%</span> {health < 30 && <LowHP>LOW HP!</LowHP>}</h1>
       </LowerRight>
     </>
   )
@@ -91,14 +94,18 @@ const GameOver = styled.div`
   filter: drop-shadow(2px 4px 6px #000);
   }
   h2 {
-  padding: 20px 0;
   color: #ab54f5;
   font-size: 2rem;
   margin-bottom: 100px;
+  padding-top: 0;
+  }
+  h3 {
+  margin-top: 20px;
   }
   .play-again {
     font-size: 1.5em;
-    padding-top: 28px;
+    padding-top: 30px;
+    margin-top: 25px;
   }
   `
 const Middle = styled.div`
@@ -237,7 +244,7 @@ const Modal = styled.div`
   line-height: normal;
   color: #be47e1;
   font-size: 3.5rem;
-  margin: 20px 0;
+  margin: 0;
   }
   h2 {
    color: #5d0186;

@@ -27,7 +27,6 @@ export default function Game() {
   let gameOver = health <= 0
   return (
     <div className={'screen game'}>
-      <Link to="/garage" className={'btn-next btn-back'}>Pause</Link>
       <Canvas
         concurrent
         gl={{ antialias: false }}
