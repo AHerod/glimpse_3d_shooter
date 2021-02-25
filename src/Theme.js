@@ -80,8 +80,8 @@ function Start() {
 
   return (
     <>
-      <Link to="/garage" className={'btn-next'}>Next</Link>
-      <Link to="/start" className={'btn-next btn-back'}>BACK</Link>
+      <Link to="/garage" className={'btn'}>Next</Link>
+      <Link to="/start" className={'btn btn-back'}>BACK</Link>
       <ThemeCarousel/>
       <Canvas
         pixelRatio={Math.min(2, isMobile ? window.devicePixelRatio : 1)}

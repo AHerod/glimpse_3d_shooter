@@ -23,8 +23,8 @@ function Target() {
   return (
     <>
       <ViewIcon/>
-      <Link to="/timer" className={'btn-next'}>START</Link>
-      <Link to="/garage" className={'btn-next btn-back'}>BACK</Link>
+      <Link to="/timer" className={'btn'}>START</Link>
+      <Link to="/garage" className={'btn btn-back'}>BACK</Link>
         <Canvas
         pixelRatio={Math.min(2, isMobile ? window.devicePixelRatio : 1)}
         camera={{ position: [0, 0, 12], fov: 80 }}

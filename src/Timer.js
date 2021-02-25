@@ -32,7 +32,7 @@ function Timer() {
   }, [counter])
   return (
     <>
-      <Link to="/target" className={'btn-next btn-back'}>BACK</Link>
+      <Link to="/target" className={'btn btn-back'}>BACK</Link>
       <Canvas
         pixelRatio={Math.min(2, isMobile ? window.devicePixelRatio : 1)}
         camera={{ position: [0, 0, 12], fov: 80 }}

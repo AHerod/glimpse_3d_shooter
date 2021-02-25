@@ -36,7 +36,7 @@ export default function App() {
 
     <Router>
       <FullScreen handle={handle}>
-        <ModalTrigger className={'modal-trigger'} onClick={() => showModal(true)}>i</ModalTrigger>
+        <ModalTrigger id={'info-trigger'} onClick={() => showModal(true)}>i</ModalTrigger>
         <Backdrop className={isOpen ? 'backdrop' : 'elo'}> </Backdrop>
         {isOpen && <Modal className={isOpen ? 'show' : 'hide'}>
           <div onClick={() => showModal(false)}>

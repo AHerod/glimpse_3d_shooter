@@ -79,7 +79,7 @@ function Start() {
 
   return (
     <>
-      <Link to="/theme" className={'btn-next'}>Start</Link>
+      <Link to="/theme" className={'btn'}>Start</Link>
       <Canvas
         pixelRatio={Math.min(2, isMobile ? window.devicePixelRatio : 1)}
         camera={{ position: [0, 0, 12], fov: 80 }}

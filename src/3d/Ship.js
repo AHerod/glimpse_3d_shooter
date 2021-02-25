@@ -1,10 +1,7 @@
 import * as THREE from 'three'
 import React, { useRef } from 'react'
 import { useLoader, useFrame } from 'react-three-fiber'
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import useStore from '../store'
-import Eye from './Eye'
-import { useGLTFLoader } from '@react-three/drei/loaders/useGLTFLoader'
 import RingTarget from './RingTarget'
 import SquareTarget from './SquareTarget'
 import ShipOneGeometry from './ShipOneGeometry'
@@ -26,10 +23,12 @@ export default function Ship({ staticPosition, staticScale }) {
   const laserGroup = useRef()
   const laserLight = useRef()
   const exhaust = useRef()
+  const target = useRef()
   const shipOne = useStore(state => state.shipOne)
   const targetOne = useStore(state => state.targetOne)
 
   //TODO: don't use useFrame in garage
+
 
   useFrame(() => {
     main.current.position.z = Math.sin(clock.getElapsedTime() * 40) * Math.PI * 0.1
@@ -38,8 +37,8 @@ export default function Ship({ staticPosition, staticScale }) {
     main.current.rotation.y += (-mouse.x / 1200 - main.current.rotation.y) * 0.1
     main.current.position.x += (mouse.x / 10 - main.current.position.x) * 0.1
     main.current.position.y += (25 + -mouse.y / 10 - main.current.position.y) * 0.1
-    exhaust.current.scale.x = 1 + Math.sin(clock.getElapsedTime() * 200)
-    exhaust.current.scale.y = 1 + Math.sin(clock.getElapsedTime() * 200)
+    // exhaust.current.scale.x = 1 + Math.sin(clock.getElapsedTime() * 200)
+    // exhaust.current.scale.y = 1 + Math.sin(clock.getElapsedTime() * 200)
     for (let i = 0; i < lasers.length; i++) {
       const group = laserGroup.current.children[i]
       group.position.z -= 20
@@ -53,9 +52,7 @@ export default function Ship({ staticPosition, staticScale }) {
     ray.direction.copy(direction.negate())
 
     // ...
-    // crossMaterial.color = mutation.hits ? lightgreen : hotpink
-    // cross.current.visible = !mutation.hits
-    // target.current.visible = !!mutation.hits
+    crossMaterial.color = mutation.hits ? lightgreen : hotpink
   })
  //TODO: END don't use useFrame in garage
   return (
@@ -84,11 +81,11 @@ export default function Ship({ staticPosition, staticScale }) {
       </group>
 
       // fuel fire TODO: don't show in garage
-      <mesh ref={exhaust} scale={[.4, .4, 5]} position={[3.5, -1, 18]}>
+      <mesh ref={exhaust} scale={[.4, .4, 30]} position={shipOne ? [-4.2, 1, 65] : [6, 3, 45]}>
         <dodecahedronBufferGeometry attach="geometry" args={[1.5, 2]} />
         <meshBasicMaterial attach="material" color="teal" />
       </mesh>
-      <mesh ref={exhaust} scale={[.4, .4, 5]} position={[-3.5, -1, 18]}>
+      <mesh ref={exhaust} scale={[.4, .4, 30]} position={shipOne ? [-7.5, 1, 65] : [-6, 3, 45]}>
         <dodecahedronBufferGeometry attach="geometry" args={[1.5, 2]} />
         <meshBasicMaterial attach="material" color="teal" />
       </mesh>

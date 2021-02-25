@@ -25,8 +25,8 @@ function Garage() {
   return (
     <>
       <ViewIcon />
-      <Link to="/target" className={'btn-next'}>NEXT</Link>
-      <Link to="/theme" className={'btn-next btn-back'}>BACK</Link>
+      <Link to="/target" className={'btn'}>NEXT</Link>
+      <Link to="/theme" className={'btn btn-back'}>BACK</Link>
       <Canvas
         pixelRatio={Math.min(2, isMobile ? window.devicePixelRatio : 1)}
         camera={{ position: [0, 0, 12], fov: 80 }}
@@ -46,9 +46,9 @@ function Garage() {
           <mesh onClick={() => setHiddenShipTwo(true)} onPointerOver={() => {
             actions.useShipOne(); setHiddenShipTwo(true)
           }}
-                rotation={[0, -140, 0]} position={[-8, 0, 0]}
+                rotation={[0, -140, 0]} position={[-6, 0, 0]}
                 scale={hiddenShipTwo ? [0.8, 0.8, 0.8] : [0.6, 0.6, 0.6]}>
-            <ShipOne />
+            <ShipOne scale={[0.7,0.7,0.7]} />
           </mesh>
           <mesh onClick={() => setHiddenShipTwo(false)} onPointerOver={() => {
             actions.useShipTwo(); setHiddenShipTwo(false)

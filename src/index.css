@@ -108,7 +108,7 @@ html, body, #root {
   cursor: url('images/cursor_black.png') 39 39, auto;
 }
 
-button:hover, .btn-next:hover, .btn-back:hover {
+button:hover, .btn:hover, .btn-back:hover {
   cursor: url('images/cursor_black.png') 39 39, auto;
 }
 
@@ -214,7 +214,7 @@ canvas {
   transition: 0.1s ease-in all;
 }
 
-.btn-next {
+.btn {
   position: fixed;
   top: 60vh;
   left: 50%;
@@ -238,7 +238,7 @@ canvas {
   z-index: 9999;
 }
 
-.btn-next:after, .btn-next:before {
+.btn:after, .btn:before {
   content: '';
   display: block;
   width: 120%;
@@ -253,7 +253,7 @@ canvas {
   animation: rotating 15s infinite ease-in;
 }
 
-.btn-next:before {
+.btn:before {
   width: 125%;
   height: 125%;
   border: 5px dashed rgba(61, 11, 89, 0.65);
@@ -263,7 +263,7 @@ canvas {
   animation: rotating 15s infinite ease-in;
 }
 
-.btn-next:hover {
+.btn:hover {
   background: rgba(61, 11, 89, 0.65);
   color: #ad14bc;
   box-shadow: inset 1px -1px 20px 10px #000;
@@ -272,11 +272,11 @@ canvas {
 }
 
 
-.btn-next:focus {
+.btn:focus {
   outline: none;
 }
 
-.btn-next:active {
+.btn:active {
   transform: scale(0.95);
   transition: transform 0.1s ease-out;
 }

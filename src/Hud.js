@@ -23,13 +23,13 @@ export default function Hud() {
       <Shadow />
       { timesOut || death &&
         <GameOver>
-          <Link to="/garage" className={'btn-next btn-back'}>BACK</Link>
+          <Link to="/garage" className={'btn btn-back'}>BACK</Link>
           <Modal className={'show'}>
             <h3> {timesOut ? 'Your ran out of time!' : 'Your ship is destroyed!'}</h3>
             <h1>Game Over</h1>
             <h2>Your Score: {score}</h2>
-            <Link to="/timer" className={'btn-next play-again'}>Play Again</Link>
-            <Link to="/start" className={'btn-next btn-back'}>Exit</Link>
+            <Link to="/garage" className={'btn play-again'}>Play Again</Link>
+            <Link to="/start" className={'btn btn-back'}>Exit</Link>
           </Modal>
         </GameOver>
       }
