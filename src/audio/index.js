@@ -12,6 +12,5 @@ const engine = new Audio(engineAudio)
 const bg = new Audio(bgAudio)
 const warp = new Audio(warpAudio)
 const explosion = new Audio(explosionAudio)
-const laser2 = new Audio(laser2Audio)
 
-export { laser, engine, bg, warp, explosion, mp3 , laser2}
+export { laser, engine, bg, warp, explosion, mp3 }

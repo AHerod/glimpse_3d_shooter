@@ -15,8 +15,6 @@ import Bubble from './3d/Bubble'
 import Hud from './Hud'
 import useStore from './store'
 import SkyBox from './3d/SkyBox'
-import { Link } from 'react-router-dom'
-import { useHistory } from 'react-router'
 
 export default function Game() {
   const { fov } = useStore(state => state.mutation)

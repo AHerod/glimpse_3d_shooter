@@ -6,43 +6,48 @@ import { Link } from 'react-router-dom'
 export default function Hud() {
   const points = useStore(state => state.points)
   const health = useStore(state => state.health)
-  let [counter, setCounter] = React.useState(60);
+  let [counter, setCounter] = React.useState(60)
 
   React.useEffect(() => {
     const timer =
-      counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
-    return () => clearInterval(timer);
-  }, [counter]);
+      counter > 0 && setInterval(() => setCounter(counter - 1), 1000)
+    return () => clearInterval(timer)
+  }, [counter])
 
 
-  let timesOut = counter === 0;
-  let death = health <= 0;
+  let timesOut = counter === 0
+  let death = health <= 0
+  let endOfGame = timesOut || death
   const score = useMemo(() => (points >= 1000 ? (points / 1000).toFixed(1) + 'K' : points), [points])
   return (
     <>
       <Shadow />
-      { timesOut || death &&
-        <GameOver>
-          <Link to="/garage" className={'btn btn-back'}>BACK</Link>
-          <Modal className={'show'}>
-            <h3> {timesOut ? 'Your ran out of time!' : 'Your ship is destroyed!'}</h3>
-            <h1>Game Over</h1>
-            <h2>Your Score: {score}</h2>
-            <Link to="/garage" className={'btn play-again'}>Play Again</Link>
-            <Link to="/start" className={'btn btn-back'}>Exit</Link>
-          </Modal>
-        </GameOver>
+      {(timesOut || death) &&
+      <GameOver>
+        <Link to="/garage" className={'btn btn-back'}>BACK</Link>
+        <Modal className={'show'}>
+          <h3> {timesOut ? 'Your ran out of time!' : 'Your ship is destroyed!'}</h3>
+          <h1>Game Over</h1>
+          <h2>Your Score: {score}</h2>
+          <Link to="/garage" className={'btn play-again'}>Play Again</Link>
+          <Link to="/start" className={'btn btn-back'}>Exit</Link>
+        </Modal>
+      </GameOver>
       }
 
-      <Middle>
-        <h1>{counter}</h1>
-        <h2>{score}</h2>
-      </Middle>
-      <Global />
-      <LowerRight>
-        <div style={{ width: health + '%' }} />
-        <h1>{health} <span>%</span> {health < 30 && <LowHP>LOW HP!</LowHP>}</h1>
-      </LowerRight>
+      {(!endOfGame) &&
+      <>
+        <Middle>
+          <h1>{counter}</h1>
+          <h2>{score}</h2>
+        </Middle>
+        <Global />
+        <LowerRight>
+          <div style={{ width: health + '%' }} />
+          <h1>{health} <span>%</span> {(health < 30) && <LowHP>LOW HP!</LowHP>}</h1>
+        </LowerRight>
+      </>
+      }
     </>
   )
 }

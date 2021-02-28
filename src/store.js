@@ -83,7 +83,7 @@ const [useStore, api] = create((set, get) => {
 
           const lasers = get().lasers
           if (mutation.hits && lasers.length && time - lasers[lasers.length - 1] < 100) {
-            playAudio(audio.laser2)
+            playAudio(audio.laser)
             const updates = a.map(data => ({ time: Date.now(), ...data }))
             set(state => ({ explosions: [...state.explosions, ...updates] }))
             clearTimeout(cancelExplosionTO)
